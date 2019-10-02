@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import Home from './views/Home.vue'
 // import AccountsList from './components/accounts/list'
-// import BalanceSheet from './components/balance-sheet/balance-sheet'
-import TrialBalance from './components/trial-balance/trial-balance'
+import BalanceSheet from './components/balance-sheet/balance-sheet'
+// import TrialBalance from './components/trial-balance/trial-balance'
 Vue.use(Router);
 
 export default new Router({
@@ -11,7 +11,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: TrialBalance
+      component: BalanceSheet
     },
     {
       path: '/about',
