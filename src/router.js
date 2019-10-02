@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-
-Vue.use(Router)
+// import Home from './views/Home.vue'
+// import AccountsList from './components/accounts/list'
+// import BalanceSheet from './components/balance-sheet/balance-sheet'
+import TrialBalance from './components/trial-balance/trial-balance'
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: TrialBalance
     },
     {
       path: '/about',

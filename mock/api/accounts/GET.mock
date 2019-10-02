@@ -1,0 +1,419 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Access-Control-Allow-Origin: *
+
+[
+    {
+      "id": "505561000000053009",
+      "name": "Prepaid Expenses",
+      "accountType": "Other Current Asset",
+      "description": "An asset account that reports amounts paid in advance while purchasing goods or services from a vendor.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000010001",
+      "name": "Other Charges",
+      "accountType": "Income",
+      "description": "Miscellaneous charges like adjustments made to the invoice can be recorded in this account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000032023",
+      "name": "Lodging",
+      "accountType": "Expense",
+      "description": "Any expense related to putting up at motels etc while on business travel can be entered here.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000054051",
+      "name": "Karamella",
+      "account_code": "",
+      "accountType": "Bank",
+      "description": "",
+      "last_modified_time": "2016-12-25T06:56:08-0500"
+    },
+    {
+      "id": "505561000000000358",
+      "name": "Undeposited Funds",
+      "account_code": "",
+      "accountType": "Cash",
+      "description": "Record funds received by your company yet to be deposited in a bank as undeposited funds and group them as a current asset in your balance sheet.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000361",
+      "name": "Petty Cash",
+      "account_code": "",
+      "accountType": "Cash",
+      "description": "It is a small amount of cash that is used to pay your minor or casual expenses rather than writing a check.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000364",
+      "name": "Accounts Receivable",
+      "account_code": "",
+      "accountType": "Accounts Receivable",
+      "description": "The money that customers owe you becomes the accounts receivable. A good example of this is a payment expected from an invoice sent to your customer.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000367",
+      "name": "Furniture and Equipment",
+      "account_code": "",
+      "accountType": "Fixed Asset",
+      "description": "Purchases of furniture and equipment for your office that can be used for a long period of time usually exceeding one year can be tracked with this account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000370",
+      "name": "Advance Tax",
+      "account_code": "",
+      "accountType": "Other Current Asset",
+      "description": "Any tax which is paid in advance is recorded into the advance tax account. This advance tax payment could be a quarterly, half yearly or yearly payment.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000373",
+      "name": "Accounts Payable",
+      "account_code": "",
+      "accountType": "Accounts Payable",
+      "description": "This is an account of all the money which you owe to others like a pending bill payment to a vendor,etc.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000376",
+      "name": "Tax Payable",
+      "account_code": "",
+      "accountType": "Other Current Liability",
+      "description": "The amount of money which you owe to your tax authority is recorded under the tax payable account. This amount is a sum of your outstanding in taxes and the tax charged on sales.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000379",
+      "name": "Retained Earnings",
+      "account_code": "",
+      "accountType": "Equity",
+      "description": "The earnings of your company which are not distributed among the share holders is accounted as retained earnings.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000382",
+      "name": "Owner's Equity",
+      "account_code": "",
+      "accountType": "Equity",
+      "description": "The owners rights to the assets of a company can be quantified in the owner''s equity account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000385",
+      "name": "Opening Balance Offset",
+      "account_code": "",
+      "accountType": "Equity",
+      "description": "This is an account where you can record the balance from your previous years earning or the amount set aside for some activities. It is like a buffer account for your funds.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000388",
+      "name": "Sales",
+      "account_code": "",
+      "accountType": "Income",
+      "description": "The income from the sales in your business is recorded under the sales account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000391",
+      "name": "General Income",
+      "account_code": "",
+      "accountType": "Income",
+      "description": "A general category of account where you can record any income which cannot be recorded into any other category.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000005001",
+      "name": "Unearned Revenue",
+      "account_code": "",
+      "accountType": "Other Current Liability",
+      "description": "A liability account that reports amounts received in advance of providing goods or services. When the goods or services are provided, this account balance is decreased and a revenue account is increased.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000394",
+      "name": "Interest Income",
+      "account_code": "",
+      "accountType": "Income",
+      "description": "A percentage of your balances and deposits are given as interest to you by your banks and financial institutions. This interest is recorded into the interest income account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000397",
+      "name": "Late Fee Income",
+      "account_code": "",
+      "accountType": "Income",
+      "description": "Any late fee income is recorded into the late fee income account. The late fee is levied when the payment for an invoice is not received by the due date.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000400",
+      "name": "Office Supplies",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "All expenses on purchasing office supplies like stationery are recorded into the office supplies account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000403",
+      "name": "Advertising And Marketing",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Your expenses on promotional, marketing and advertising activities like banners, web-adds, trade shows, etc. are recorded in advertising and marketing account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000406",
+      "name": "Discount",
+      "account_code": "",
+      "accountType": "Income",
+      "description": "Any reduction on your selling price as a discount can be recorded into the discount account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000409",
+      "name": "Bank Fees and Charges",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Any bank fees levied is recorded into the bank fees and charges account. A bank account maintenance fee, transaction charges, a late payment fee are some examples.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000412",
+      "name": "Credit Card Charges",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Service fees for transactions , balance transfer fees, annual credit fees and other charges levied on a credit card are recorded into the credit card account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000415",
+      "name": "Exchange Gain or Loss",
+      "account_code": "",
+      "accountType": "Other Expense",
+      "description": "Changing the conversion rate can result in a gain or a loss. You can record this into the exchange gain or loss account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000418",
+      "name": "Travel Expense",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Expenses on business travels like hotel bookings, flight charges, etc. are recorded as travel expenses.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000421",
+      "name": "Telephone Expense",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "The expenses on your telephone, mobile and fax usage are accounted as telephone expenses.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000424",
+      "name": "Automobile Expense",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Transportation related expenses like fuel charges and maintenance charges for automobiles, are included to the automobile expense account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000427",
+      "name": "IT and Internet Expenses",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Money spent on your IT infrastructure and usage like  internet connection, purchasing computer equipment etc is recorded as an IT and Computer Expense.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000430",
+      "name": "Rent Expense",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "The rent paid for your office or any space related to your business can be recorded as a rental expense.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000433",
+      "name": "Janitorial Expense",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "All your janitorial and cleaning expenses are recorded into the janitorial expenses account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000014001",
+      "name": "Shipping Charge",
+      "account_code": "",
+      "accountType": "Income",
+      "description": "Shipping charges made to the invoice will be recorded in this account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000436",
+      "name": "Postage",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Your expenses on ground mails, shipping and air mails can be recorded under the postage account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000439",
+      "name": "Bad Debt",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Any amount which is lost and is unrecoverable is recorded into the bad debt account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000035001",
+      "name": "Employee Advance",
+      "account_code": "",
+      "accountType": "Other Current Asset",
+      "description": "Money paid out to an employee in advance can be tracked here till it's repaid or shown to be spent for company purposes.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000003001",
+      "name": "Opening Balance Adjustments",
+      "account_code": "",
+      "accountType": "Other Current Liability",
+      "description": "This account will hold the difference in the debits and credits entered during the opening balance.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000442",
+      "name": "Printing and Stationery",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Expenses incurred by the organization towards printing and stationery.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000035003",
+      "name": "Employee Reimbursements",
+      "account_code": "",
+      "accountType": "Other Current Liability",
+      "description": "This account can be used to track the reimbursements that are due to be paid out to employees.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000035005",
+      "name": "Uncategorized",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "This account can be used to temporarily track expenses that are yet to be identified and classified into a particular category",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000445",
+      "name": "Salaries and Employee Wages",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Salaries for your employees and the wages paid to workers are recorded under the salaries and wages account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000448",
+      "name": "Meals and Entertainment",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Expenses on food and entertainment are recorded into this account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000451",
+      "name": "Depreciation Expense",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Any depreciation in value of your assets can be captured as a depreciation expense.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000454",
+      "name": "Consultant Expense",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Charges for availing the services of a consultant is recorded as a consultant expenses. The fees paid to a soft skills consultant to impart personality development training for your employees is a good example.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000045001",
+      "name": "Tag Adjustments",
+      "account_code": "",
+      "accountType": "Other Liability",
+      "description": "This adjustment account tracks the transfers between different reporting tags.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000457",
+      "name": "Repairs and Maintenance",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "The costs involved in maintenance and repair of assets is recorded under this account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000000460",
+      "name": "Other Expenses",
+      "account_code": "",
+      "accountType": "Expense",
+      "description": "Any minor expense on activities unrelated to primary business operations is recorded under the other expense account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000034001",
+      "name": "Inventory Asset",
+      "account_code": "",
+      "accountType": "Stock",
+      "description": "An account which tracks the value of goods in your inventory.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000034003",
+      "name": "Cost of Goods Sold",
+      "account_code": "",
+      "accountType": "Cost Of Goods Sold",
+      "description": "An expense account which tracks the value of the goods sold.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000012001",
+      "name": "Drawings",
+      "account_code": "",
+      "accountType": "Equity",
+      "description": "The money withdrawn from a business by its owner can be tracked with this account.",
+      "last_modified_time": "2016-12-22T13:43:53-0500"
+    },
+    {
+      "id": "505561000000054001",
+      "name": "test",
+      "account_code": "",
+      "accountType": "Other Asset",
+      "description": "",
+      "last_modified_time": "2016-12-25T03:13:27-0500"
+    },
+    {
+      "id": "505561000000054003",
+      "name": "asfdasd",
+      "account_code": "",
+      "accountType": "Other Asset",
+      "description": "",
+      "last_modified_time": "2016-12-25T03:46:55-0500"
+    },
+    {
+      "id": "505561000000054005",
+      "name": "asfdasdqerqwe",
+      "account_code": "",
+      "accountType": "Other Asset",
+      "description": "",
+      "last_modified_time": "2016-12-25T03:48:54-0500"
+    }
+  ]
