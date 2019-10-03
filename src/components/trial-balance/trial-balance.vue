@@ -55,26 +55,39 @@
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
         name: "TrialBalance",
-        data: () => ({
-            assets: [
-                {id: 1, name: `chase bank`, debt: 2000, credit: 0},
-                {id: 2, name: `Petty Cash`, debt: 2000, credit: 0}
-            ],
-            equities: [
-                {id: 1, name: `chase bank`, debt: 0, credit: 2000},
-                {id: 2, name: `Petty Cash`, debt: 0, credit: 3000}
-            ],
-            income: [
-                {id: 1, name: `chase bank`, debt: 2000, credit: 0},
-                {id: 2, name: `Petty Cash`, debt: 2000, credit: 0}
-            ],
-            expense: [
-                {id: 1, name: `chase bank`, debt: 0, credit: 2000},
-                {id: 2, name: `Petty Cash`, debt: 0, credit: 2000}
-            ]
-        }),
+        data: () => (
+            {
+                assets: [
+                    // {id: 1, name: `chase bank`, debt: 2000, credit: 0},
+                    // {id: 2, name: `Petty Cash`, debt: 2000, credit: 0}
+                ],
+                equities: [
+                    // {id: 1, name: `chase bank`, debt: 0, credit: 2000},
+                    // {id: 2, name: `Petty Cash`, debt: 0, credit: 3000}
+                ],
+                income: [
+                    // {id: 1, name: `chase bank`, debt: 2000, credit: 0},
+                    // {id: 2, name: `Petty Cash`, debt: 2000, credit: 0}
+                ],
+                expense: [
+                    // {id: 1, name: `chase bank`, debt: 0, credit: 2000},
+                    // {id: 2, name: `Petty Cash`, debt: 0, credit: 2000}
+                ]
+            }
+        ),
+        mounted: function () {
+            var url = `http://localhost:8080/reports/trialBalance`;
+            axios.get(url).then(res => {
+                this.assets = Object.values(res.data.Assets).flatMap(a => a);
+                this.equities = Object.values(res.data.Equity).flatMap(a => a);
+                this.income = Object.values(res.data["Income "]).flatMap(a => a);
+                this.expense = Object.values(res.data.Expense).flatMap(a => a);
+            });
+        },
         computed: {
             allAccounts: function () {
                 return [...this.assets, ...this.equities, ...this.income, ...this.expense]
@@ -83,7 +96,7 @@
                 return this.allAccounts.map(a => a.credit).reduce(((a, b) => a + b), 0);
             },
             totalDebt: function () {
-                return this.allAccounts.map(a => a.debt).reduce(((a, b) => a + b), 0);
+                return this.allAccounts.map(a => a.debit).reduce(((a, b) => a + b), 0);
             }
         }
     }
