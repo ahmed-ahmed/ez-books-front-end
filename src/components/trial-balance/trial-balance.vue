@@ -96,7 +96,7 @@
                 return this.allAccounts.map(a => a.credit).reduce(((a, b) => a + b), 0);
             },
             totalDebt: function () {
-                return this.allAccounts.map(a => a.debit).reduce(((a, b) => a + b), 0);
+                return this.allAccounts.map(a => a.debt).reduce(((a, b) => a + b), 0);
             }
         }
     }
