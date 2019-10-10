@@ -1,8 +1,8 @@
 <template>
     <div id="app">
-<!--        <div id="nav">-->
+        <!--        <div id="nav">-->
 
-<!--        </div>-->
+        <!--        </div>-->
         <div class="sidebar card">
             <div class="body">
                 <ul>
@@ -117,9 +117,35 @@
         padding: 30px;
     }
 
-    .table {
+    .table-bordered {
         border-top: solid 3px #eeeeee;
         border-radius: 5px;
+    }
+
+    .form-group {
+        display: block;
+        margin-bottom: 1rem;
+    }
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 2.375rem;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 40, 100, 0.12);
+        border-radius: 3px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .form-label {
+        display: block;
+        margin-bottom: .375rem;
+        font-weight: 600;
+        font-size: 0.875rem;
     }
 </style>
 
