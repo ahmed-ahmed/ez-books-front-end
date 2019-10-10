@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = `http://localhost:8080/api/`;
+const url = `http://localhost:5214/api/`;
 
 const api = axios.create({
     baseURL: url,
@@ -8,4 +8,4 @@ const api = axios.create({
     headers: {'X-Custom-Header': 'CustomHeader1'}
 });
 
-export default {api}
+export default api

@@ -48,7 +48,7 @@
             </tr>
             <tr v-for="d in journal.journalDetails" :key="d.id">
                 <td>
-                    <select2 :data="options" name="test" v-model="d.accountId"></select2>
+                    <select2 :data="accounts" v-model="d.accountId"></select2>
                     <!--                    <select id="selectbasic" name="selectbasic" class="form-control" v-model="d.accountId">-->
                     <!--                        <option v-for="a in accounts" :value="a.id" :key="a.id">{{a.name}}</option>-->
                     <!--                    </select>-->
@@ -94,28 +94,28 @@
         data: function () {
             return {
                 accounts: [],
-                options: [
-                    {
-                        id: 0,
-                        text: 'enhancement'
-                    },
-                    {
-                        id: 1,
-                        text: 'bug'
-                    },
-                    {
-                        id: 2,
-                        text: 'duplicate'
-                    },
-                    {
-                        id: 3,
-                        text: 'invalid'
-                    },
-                    {
-                        id: 4,
-                        text: 'wontfix'
-                    }
-                ],
+                // options: [
+                //     {
+                //         id: 0,
+                //         text: 'enhancement'
+                //     },
+                //     {
+                //         id: 1,
+                //         text: 'bug'
+                //     },
+                //     {
+                //         id: 2,
+                //         text: 'duplicate'
+                //     },
+                //     {
+                //         id: 3,
+                //         text: 'invalid'
+                //     },
+                //     {
+                //         id: 4,
+                //         text: 'wontfix'
+                //     }
+                // ],
                 journal: {
                     journalDetails: [{
                         debt: 0,
@@ -124,9 +124,10 @@
                 }
             }
         },
-        mounted: function () {
-            api.get(`accounts`).then(res => {
-                this.accounts = res.data;
+        mounted: async function () {
+            let res = await api.get(`accounts`);
+            this.accounts = res.data.map(a => {
+                return {id: a.id, text: a.name}
             });
         },
         methods: {

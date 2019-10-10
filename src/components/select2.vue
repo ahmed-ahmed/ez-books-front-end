@@ -12,8 +12,14 @@
     export default {
         name: "select2",
         props: ['data'],
-
-
+        watch: {
+            data: function(newVal) { // watch it
+                let select = $(this.$el);
+                select.select2({
+                    data: newVal
+                });
+            }
+        },
         //{
             //data: [],
             // name: ``,
@@ -35,7 +41,7 @@
         mounted() {
             // this.formatOptions()
             // let vm = this
-            let select = $(this.$el)
+            let select = $(this.$el);
             // select.select2({
             //     // data: [`hi`, `mu`]
             // });

@@ -1,30 +1,31 @@
 <template>
     <div id="app">
-        <!--        <div id="nav">-->
+<!--        <div id="nav">-->
 
-        <!--        </div>-->
-        <div class="sidebar">
-            <ul>
-                <li>
-                    <router-link to="/">Home</router-link>
-                </li>
-                <li>
-                    <router-link to="/journals">journals</router-link>
-                </li>
-                <li>
-                    <router-link to="/journals/add">new journal</router-link>
-                </li>
-                <li>
-                    <router-link to="/balance-sheet">Balance Sheet</router-link>
-                </li>
-                <li>
-                    <router-link to="/trial-balance">Trial Balance</router-link>
-                </li>
-                <li>
-                    <router-link to="/general-ledger">General Ledger</router-link>
-                </li>
-            </ul>
-
+<!--        </div>-->
+        <div class="sidebar card">
+            <div class="body">
+                <ul>
+                    <li>
+                        <router-link to="/">Home</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/journals">journals</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/journals/add">new journal</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/balance-sheet">Balance Sheet</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/trial-balance">Trial Balance</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/general-ledger">General Ledger</router-link>
+                    </li>
+                </ul>
+            </div>
 
         </div>
         <div class="page">
@@ -50,11 +51,17 @@
     @import "~select2/dist/css/select2.css";
 
     body {
-        background: #eee;
+        margin: 0;
+        font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        text-align: left;
+        background-color: #f5f7fb;
     }
 
     #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         display: grid;
@@ -68,16 +75,51 @@
         padding: 20px;
     }
 
-    .page {
-        border-top: solid 2px #007bff;
+    .card {
         margin: 10px;
-        padding: 20px;
-        background: #ffffff;
-    }
+        border: 1px solid rgba(0, 40, 100, 0.12);
+        border-radius: 3px;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 
+
+        .body {
+            position: relative;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            padding: 1.5rem 1.5rem;
+        }
+
+        .header {
+            border-radius: calc(3px - 1px) calc(3px - 1px) 0 0;
+            background: none;
+            padding: 0.5rem 1.5rem;
+            display: -ms-flexbox;
+            display: flex;
+            min-height: 3.5rem;
+            -ms-flex-align: center;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+        }
+
+        .footer {
+            border-top: 1px solid rgba(0, 40, 100, 0.12);
+            color: #6e7687;
+            padding: 1rem 1.5rem;
+            background: none;
+        }
+    }
 
     #nav {
         padding: 30px;
+    }
+
+    .table {
+        border-top: solid 3px #eeeeee;
+        border-radius: 5px;
     }
 </style>
 
