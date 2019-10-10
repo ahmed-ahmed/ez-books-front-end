@@ -24,9 +24,7 @@
     </div>
 </template>
 <script>
-    import axios from 'axios';
-
-    const baseUrl = "http://localhost:9001/api";
+    import api from '../../config/api.config';
 
     export default {
         name: 'AccountsList',
@@ -38,9 +36,8 @@
         },
         methods: {
             async getAccounts() {
-                let response = await axios.get(baseUrl + `/accounts`);
+                let response = await api.get(`accounts`);
                 this.accounts = response.data;
-                console.log(this.accounts)
             }
         }
     }

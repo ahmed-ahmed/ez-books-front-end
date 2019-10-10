@@ -15,10 +15,8 @@
     </div>
 </template>
 <script>
-    import axios from 'axios';
+    import api from '../../config/api.config';
     import BalanceSheetAccounts from "./BalanceSheetAccounts";
-
-    const baseUrl = "http://localhost:9001/api";
 
     export default {
         name: 'BalanceSheet',
@@ -87,7 +85,7 @@
         },
         methods: {
             async getAccounts() {
-                let response = await axios.get(baseUrl + `/balancesheet`);
+                let response = await api.get(`balancesheet`);
                 this.accounts = response.data;
                 console.log(this.accounts)
             }

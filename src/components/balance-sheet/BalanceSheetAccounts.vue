@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="a in accounts">
+        <div v-for="a in accounts" :key="a.id">
             {{a.name}}
             <span v-if="!hasChildren(a)">{{a.total}}</span>
             <div v-else>

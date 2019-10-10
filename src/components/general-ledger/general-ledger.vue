@@ -16,8 +16,7 @@
 </template>
 
 <script>
-    import axios from "axios";
-
+    import api from '../../config/api.config';
     export default {
         name: "generalLedger",
         data: function () {
@@ -26,8 +25,7 @@
             }
         },
         mounted: function () {
-            var url = `http://localhost:8080/reports/generalLedger`;
-            axios.get(url).then(res => {
+            api.get(`reports/generalLedger`).then(res => {
                 this.generalLedger = res.data;
             });
         }

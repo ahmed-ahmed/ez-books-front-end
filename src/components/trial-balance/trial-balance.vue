@@ -55,8 +55,7 @@
 </template>
 
 <script>
-    import axios from "axios";
-
+    import api from '../../config/api.config';
     export default {
         name: "TrialBalance",
         data: () => (
@@ -80,8 +79,7 @@
             }
         ),
         mounted: function () {
-            var url = `http://localhost:8080/reports/trialBalance`;
-            axios.get(url).then(res => {
+            api.get(`reports/trialBalance`).then(res => {
                 this.assets = Object.values(res.data.Assets).flatMap(a => a);
                 this.equities = Object.values(res.data.Equity).flatMap(a => a);
                 this.income = Object.values(res.data["Income "]).flatMap(a => a);

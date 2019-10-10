@@ -28,11 +28,11 @@
 
                 <!-- Textarea -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="Notes">Notes</label>
+                    <!--                    <label class="col-md-4 control-label" for="Notes">Notes</label>-->
                     <div class="col-md-4">
-<!--                        <textarea class="form-control" id="Notes"-->
-<!--                                  v-model="journal.notes"-->
-<!--                                  name="Notes">Enter Notes.</textarea>-->
+                        <!--                        <textarea class="form-control" id="Notes"-->
+                        <!--                                  v-model="journal.notes"-->
+                        <!--                                  name="Notes">Enter Notes.</textarea>-->
                     </div>
                 </div>
 
@@ -48,12 +48,13 @@
             </tr>
             <tr v-for="d in journal.journalDetails" :key="d.id">
                 <td>
-                    <select id="selectbasic" name="selectbasic" class="form-control" v-model="d.accountId">
-                        <option v-for="a in accounts" :value="a.id" :key="a.id">{{a.name}}</option>
-                    </select>
+                    <select2 :data="options" name="test" v-model="d.accountId"></select2>
+                    <!--                    <select id="selectbasic" name="selectbasic" class="form-control" v-model="d.accountId">-->
+                    <!--                        <option v-for="a in accounts" :value="a.id" :key="a.id">{{a.name}}</option>-->
+                    <!--                    </select>-->
                 </td>
                 <td>
-<!--                    <textarea v-model="d.description"></textarea>-->
+                    <!--                    <textarea v-model="d.description"></textarea>-->
                 </td>
                 <td>
                     <input type="text" v-model="d.debt"/>
@@ -82,13 +83,39 @@
 </template>
 
 <script>
-    import axios from "axios";
+    import api from "../../config/api.config";
+    import select2 from "../select2";
 
     export default {
         name: "addJournal",
+        components: {
+            select2
+        },
         data: function () {
             return {
                 accounts: [],
+                options: [
+                    {
+                        id: 0,
+                        text: 'enhancement'
+                    },
+                    {
+                        id: 1,
+                        text: 'bug'
+                    },
+                    {
+                        id: 2,
+                        text: 'duplicate'
+                    },
+                    {
+                        id: 3,
+                        text: 'invalid'
+                    },
+                    {
+                        id: 4,
+                        text: 'wontfix'
+                    }
+                ],
                 journal: {
                     journalDetails: [{
                         debt: 0,
@@ -98,8 +125,7 @@
             }
         },
         mounted: function () {
-            var url = `http://localhost:8080/accounts`;
-            axios.get(url).then(res => {
+            api.get(`accounts`).then(res => {
                 this.accounts = res.data;
             });
         },
@@ -108,10 +134,8 @@
                 this.journal.journalDetails.push({});
             },
             save: function () {
-                var url = `http://localhost:8080/journals`;
-                axios.post(url, this.journal).then(console.log)
+                api.post(`journals`, this.journal).then(console.log)
             }
-
         }
     }
 </script>

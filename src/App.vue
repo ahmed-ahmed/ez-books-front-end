@@ -47,6 +47,7 @@
 
 <style lang="scss">
     @import '~bootstrap/dist/css/bootstrap.css';
+    @import "~select2/dist/css/select2.css";
 
     body {
         background: #eee;
