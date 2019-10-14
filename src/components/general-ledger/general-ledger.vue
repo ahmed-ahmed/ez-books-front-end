@@ -14,9 +14,9 @@
                 </tr>
                 <tr v-for="g in generalLedger" :key="g.id">
                     <td>{{g.name}}</td>
-                    <td class="text-right">{{g.credit}}</td>
-                    <td class="text-right">{{g.debt}}</td>
-                    <td class="text-right">{{g.total}}</td>
+                    <td class="text-right">{{g.creditBalance}}</td>
+                    <td class="text-right">{{g.debtBalance}}</td>
+                    <td class="text-right">{{g.creditBalance - g.debtBalance}}</td>
                 </tr>
             </table>
         </div>
@@ -34,7 +34,7 @@
             }
         },
         mounted: function () {
-            api.get(`reports/generalLedger`).then(res => {
+            api.get(`reports/accountBalances`).then(res => {
                 this.generalLedger = res.data;
             });
         }

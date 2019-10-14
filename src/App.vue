@@ -10,7 +10,7 @@
                         <router-link to="/">Home</router-link>
                     </li>
                     <li>
-                        <router-link to="/accounts">Chart Of Accounts</router-link>
+                        <router-link to="/accounts" class="chart-of-account-link">Chart Of Accounts</router-link>
                     </li>
                     <li>
                         <router-link to="/accounts/add">add Account</router-link>

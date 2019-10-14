@@ -4,28 +4,28 @@
             Chart of Accounts
         </div>
         <div class="body">
-            <ul>
+            <ul class="chart-of-account-list">
                 <li v-for="t in accounts" :id="t.id">
                     <div class="row">
                         <div class="col-md-4">{{t.name}}</div>
-                        <div class="col-md-4">{{t.accountType}}</div>
+                        <div class="col-md-4">{{t.parentName}}</div>
                     </div>
 
-                    <ul>
-                        <li v-for="c in t.children" :id="c.id">
-                            <div class="row">
-                                <div class="col-md-4">{{c.name}}</div>
-                                <div class="col-md-4">{{c.accountType}}</div>
-                            </div>
+<!--                    <ul>-->
+<!--                        <li v-for="c in t.children" :id="c.id">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4">{{c.name}}</div>-->
+<!--                                <div class="col-md-4">{{c.accountType}}</div>-->
+<!--                            </div>-->
 
-                            <!--                            <ul>-->
-                            <!--                                <li v-for="a in c.accounts" :id="a.id">-->
-                            <!--                                    {{a.name}}-->
-                            <!--                                </li>-->
-                            <!--                            </ul>-->
+<!--                            &lt;!&ndash;                            <ul>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <li v-for="a in c.accounts" :id="a.id">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                    {{a.name}}&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                </li>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </ul>&ndash;&gt;-->
 
-                        </li>
-                    </ul>
+<!--                        </li>-->
+<!--                    </ul>-->
 
                 </li>
             </ul>

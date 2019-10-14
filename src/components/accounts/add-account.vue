@@ -58,7 +58,7 @@
             }
         },
         mounted: async function () {
-            let res = await api.get(`accounts/allAccounts`);
+            let res = await api.get(`accountTypes`);
             this.accounts = this.groupBy(res.data, 'accountType')
             // this.accounts = res.data.map(a => {
             //     return {id: a.id, text: a.name}
