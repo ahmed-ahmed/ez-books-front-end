@@ -1,5 +1,5 @@
 <template>
-    <select class="form-control">
+    <select class="form-control" style="width: 300px">
     </select>
 </template>
 
@@ -11,27 +11,32 @@
 
     export default {
         name: "select2",
-        props: ['data'],
+        props: ['data', 'value'],
         watch: {
-            data: function(newVal) { // watch it
+            data: function (newVal) { // watch it
                 let select = $(this.$el);
                 select.select2({
                     data: newVal
                 });
-            }
-        },
-        //{
-            //data: [],
-            // name: ``,
-            // options: {
-            //     Object
-            // },
-            // value: null,
-            // multiple: {
-            //     Boolean,
-            //     default: false
+            },
+            // val: function (newVal) {
+            //     let select = $(this.$el);
+            //     select.val(newVal);
             //
             // }
+        },
+        //{
+        //data: [],
+        // name: ``,
+        // options: {
+        //     Object
+        // },
+        // value: null,
+        // multiple: {
+        //     Boolean,
+        //     default: false
+        //
+        // }
         //},
         data() {
             return {
@@ -39,6 +44,7 @@
             }
         },
         mounted() {
+            const vm = this;
             // this.formatOptions()
             // let vm = this
             let select = $(this.$el);
@@ -47,7 +53,16 @@
             // });
             select.select2({
                 data: this.data
-            })
+            }).on('change', function () {
+                vm.$emit('input', select.val())
+            });
+            select.val(this.value).trigger('change')
+
+            // select.on('select2:select', function (e) {
+            //     console.log(e);
+            //     this.value = e.params.data.id;
+            // });
+
             // select
             //     .select2({
             //         placeholder: 'Select',

@@ -1,25 +1,35 @@
 <template>
-    <div>
-        <div>
-            <h2>Accounts</h2>
+    <div class="card">
+        <div class="header">
+            Chart of Accounts
         </div>
-        <div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Code</th>
-                        <th>Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="account in accounts" :key="account.id">
-                        <td>{{account.name}}</td>
-                        <td>{{account.code}}</td>
-                        <td>{{account.accountType}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="body">
+            <ul>
+                <li v-for="t in accounts" :id="t.id">
+                    <div class="row">
+                        <div class="col-md-4">{{t.name}}</div>
+                        <div class="col-md-4">{{t.accountType}}</div>
+                    </div>
+
+                    <ul>
+                        <li v-for="c in t.children" :id="c.id">
+                            <div class="row">
+                                <div class="col-md-4">{{c.name}}</div>
+                                <div class="col-md-4">{{c.accountType}}</div>
+                            </div>
+
+                            <!--                            <ul>-->
+                            <!--                                <li v-for="a in c.accounts" :id="a.id">-->
+                            <!--                                    {{a.name}}-->
+                            <!--                                </li>-->
+                            <!--                            </ul>-->
+
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+
         </div>
     </div>
 </template>
@@ -28,16 +38,18 @@
 
     export default {
         name: 'AccountsList',
-        data: () => ({
-            accounts: [],
-        }),
+        data: () => (
+            {
+                accounts: {}
+            }
+        ),
         mounted() {
             this.getAccounts();
         },
         methods: {
             async getAccounts() {
                 let response = await api.get(`accounts`);
-                this.accounts = response.data;
+                this.accounts = response.data.filter(a => !a.parentAccount);
             }
         }
     }

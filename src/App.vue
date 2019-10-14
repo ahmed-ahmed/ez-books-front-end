@@ -10,6 +10,12 @@
                         <router-link to="/">Home</router-link>
                     </li>
                     <li>
+                        <router-link to="/accounts">Chart Of Accounts</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/accounts/add">add Account</router-link>
+                    </li>
+                    <li>
                         <router-link to="/journals">journals</router-link>
                     </li>
                     <li>
@@ -110,6 +116,7 @@
             color: #6e7687;
             padding: 1rem 1.5rem;
             background: none;
+            text-align: right;
         }
     }
 

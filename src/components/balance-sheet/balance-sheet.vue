@@ -1,17 +1,43 @@
 <template>
-    <div>
-        <h2>Balance Sheet</h2>
+    <div class="card">
+        <div class="header">
+            Balance Sheet
+        </div>
+        <div class="body">
+            <ul>
+                <li v-for="t in accountTypes" :id="t.id">
+                    {{t.name}}
 
-       <h3>Assets</h3>
-        <balance-sheet-accounts :accounts="assets.accounts"/>
+                    <ul>
+                        <li v-for="c in t.accountCategorieses" :id="c.id">
+                            {{c.name}}
+                            <ul>
+                                <li v-for="a in c.accounts" :id="a.id">
+                                    <div class="row">
+                                        <div class="col-4">{{a.name}}</div>
+                                        <div class="col-4 text-right">{{a.credit - a.debt}}</div>
+                                    </div>
+                                </li>
 
-        <h3>liabilities</h3>
-        <balance-sheet-accounts :accounts="liabilities.accounts"/>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4 text-right">===========================</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4 text-right">4000</div>
+                                    </div>
 
-        <h3>equities</h3>
-        <balance-sheet-accounts :accounts="equities.accounts"/>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
 
+                </li>
+            </ul>
 
+        </div>
     </div>
 </template>
 <script>
@@ -21,73 +47,18 @@
     export default {
         name: 'BalanceSheet',
         components: {BalanceSheetAccounts},
-        data: () => ({
-            assets: {
-                total: 4000,
-                accounts: [
-                    {
-                        name: `Current Assets`,
-                        total: 6000,
-                        childAccounts: [
-                            {
-                                name: `Cash`,
-                                accounts: [{name: `Petty Cash`, balanced: 1000}],
-                                total: 3000
-                            },
-                            {
-                                name: `Bank`,
-                                accounts: [{name: `Chase Bank`, balanced: 3000}],
-                                total: 3000
-                            }
-                        ],
-
-                    },
-                ]
-            },
-            liabilities: {
-                total: 0,
-                accounts: [
-                    // {
-                    //     name: `Current Assets`,
-                    //     total: 0,
-                    //     childAccounts: [
-                    //         {
-                    //             accountType: `Cash`,
-                    //             accounts: [{name: `Petty Cash`, balanced: 1000}],
-                    //             total: 3000
-                    //         },
-                    //         {
-                    //             accountType: `Bank`,
-                    //             accounts: [{name: `Chase Bank`, balanced: 3000}],
-                    //             total: 3000
-                    //         }
-                    //     ],
-                    //
-                    // },
-                ]
-            },
-            equities: {
-                total: 4000,
-                accounts: [
-                    {
-                        name: `Current Year Earnings`,
-                        total: -1000,
-                    },
-                    {
-                        name: `Owner's Equity`,
-                        total: 5000,
-                    },
-                ]
-            },
-        }),
+        data: () => (
+            {
+                accountTypes: {}
+            }
+        ),
         mounted() {
             this.getAccounts();
         },
         methods: {
             async getAccounts() {
-                let response = await api.get(`balancesheet`);
-                this.accounts = response.data;
-                console.log(this.accounts)
+                let response = await api.get(`accountTypes`);
+                this.accountTypes = response.data;
             }
         }
     }

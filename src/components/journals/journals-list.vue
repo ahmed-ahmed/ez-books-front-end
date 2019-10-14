@@ -13,35 +13,32 @@
                 </tr>
 
                 <tr v-for="j in journals" :key="j.id">
-                    <td>{{j.id}}</td>
+<!--                    <td>{{j.id}}</td>-->
                     <td>{{j.date}}</td>
                     <td>{{j.no}}</td>
                     <td>{{j.status}}</td>
+                    <td>{{j.amount}}</td>
                 </tr>
             </table>
         </div>
-<!--        <div class="footer">-->
-<!--            <button class="btn btn-primary">Ok</button>-->
-<!--        </div>-->
     </div>
 </template>
 
 <script>
+    import api from "../../config/api.config";
+
     export default {
         name: "journalsList",
         data: function () {
             return {
-                journals: [
-                    {
-                        id: 1,
-                        date: '12-12-12',
-                        no: 1521,
-                        status: 'paid',
-                        amount: '$440'
-                    }
-                ]
+                journals: [ ]
             }
-        }
+        },
+        mounted: async function () {
+            let res = await api.get(`journals`);
+            this.journals = res.data;
+        },
+
     }
 </script>
 

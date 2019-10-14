@@ -1,22 +1,31 @@
 <template>
-    <table class="table">
-        <tr>
-            <th>Account</th>
-            <th>Debt</th>
-            <th>Credit</th>
-            <th>Balance</th>
-        </tr>
-        <tr v-for="g in generalLedger" :key="g.id">
-            <td>{{g.name}}</td>
-            <td>{{g.credit}}</td>
-            <td>{{g.debt}}</td>
-            <td>{{g.total}}</td>
-        </tr>
-    </table>
+    <div class="card">
+        <div class="header">
+            General Ledger
+        </div>
+        <div class="body">
+            <table class="table table-bordered table-striped">
+
+                <tr>
+                    <th>Account</th>
+                    <th class="text-right">Debt</th>
+                    <th class="text-right">Credit</th>
+                    <th class="text-right">Balance</th>
+                </tr>
+                <tr v-for="g in generalLedger" :key="g.id">
+                    <td>{{g.name}}</td>
+                    <td class="text-right">{{g.credit}}</td>
+                    <td class="text-right">{{g.debt}}</td>
+                    <td class="text-right">{{g.total}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </template>
 
 <script>
     import api from '../../config/api.config';
+
     export default {
         name: "generalLedger",
         data: function () {
