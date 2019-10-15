@@ -1,8 +1,10 @@
 <template>
     <div id="app">
-        <!--        <div id="nav">-->
-
-        <!--        </div>-->
+        <div class="header">
+            <div class="card">
+                This is header
+            </div>
+        </div>
         <div class="sidebar card">
             <div class="body">
                 <ul>
@@ -37,6 +39,12 @@
         <div class="page">
             <router-view/>
         </div>
+
+        <div class="footer">
+            <div class="card">
+                This is footer
+            </div>
+        </div>
     </div>
 </template>
 
@@ -70,19 +78,46 @@
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        margin: 10px;
+        grid-gap: 10px;
         display: grid;
-        grid-template-columns: 250px auto
+        grid-template-rows: [header] 100px [body] auto [footer] 50px;
+        grid-template-columns: [sidebar] 250px [main] auto
+    }
+
+    .header {
+        /*background: #ffffff;*/
+        grid-row: header;
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        .card {
+            height: 100%;
+            padding: 20px;
+        }
+        /*gri*/
+    }
+
+    .footer {
+        grid-row: footer;
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        .card {
+            height: 100%;
+            padding: 20px;
+        }
     }
 
     .sidebar {
         border-top: solid 2px #007bff;
         background: #ffffff;
-        margin: 10px;
+        /*margin: 10px;*/
         padding: 20px;
     }
 
     .card {
-        margin: 10px;
+        /*margin: 10px;*/
         border: 1px solid rgba(0, 40, 100, 0.12);
         border-radius: 3px;
         box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -133,6 +168,7 @@
         display: block;
         margin-bottom: 1rem;
     }
+
     .form-control {
         display: block;
         width: 100%;
@@ -148,6 +184,7 @@
         border-radius: 3px;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
+
     .form-label {
         display: block;
         margin-bottom: .375rem;

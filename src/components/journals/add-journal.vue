@@ -39,10 +39,13 @@
                     </tr>
                     <tr v-for="d in journal.journalDetails" :key="d.id">
                         <td>
-                            <select class="form-control" v-model="d.accountId">
-                                <option v-for="a in accounts" :value="a.id" :key="a.id">{{a.text}}</option>
+                            <select class="form-control" v-model="d.account.id">
+                                <template v-for="group in Object.keys(accounts)" :id="group">
+                                    <optgroup :label="group">
+                                        <option v-for="a in accounts[group]" :value="a.id" :key="a.id">{{a.name}}</option>
+                                    </optgroup>
+                                </template>
                             </select>
-                            <!--                        <select2 :data="accounts" :value="d.accountId"></select2>-->
                         </td>
                         <td>
                             <textarea class="form-control"></textarea>
@@ -60,9 +63,6 @@
                         <td>{{totalCredit}}</td>
                     </tr>
                 </table>
-                <div class="col-4 col-offset-8">
-                    0.00
-                </div>
             </div>
 
             <div class="form-group">
@@ -97,6 +97,7 @@
                 accounts: [],
                 journal: {
                     journalDetails: [{
+                        account: {},
                         debt: 0,
                         credit: 0
                     }]
@@ -105,16 +106,24 @@
         },
         mounted: async function () {
             let res = await api.get(`accounts`);
-            this.accounts = res.data.map(a => {
-                return {id: a.id, text: a.name}
-            });
+            this.accounts = this.groupBy(res.data, `parentName`)
+
+            //     res.data.map(a => {
+            //     return {id: a.id, text: a.name}
+            // });
         },
         methods: {
             addLine: function () {
-                this.journal.journalDetails.push({debt: 0, credit: 0});
+                this.journal.journalDetails.push({debt: 0, credit: 0, account: {}});
             },
             save: function () {
                 api.post(`journals`, this.journal).then(console.log)
+            },
+            groupBy: function (xs, key) {
+                return xs.reduce(function (rv, x) {
+                    (rv[x[key]] = rv[x[key]] || []).push(x);
+                    return rv;
+                }, {});
             }
         },
         computed: {
