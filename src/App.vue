@@ -1,40 +1,41 @@
 <template>
     <div id="app">
+        <notifications group="n"/>
+
         <div class="header">
             <div class="card">
-                This is header
+                <div class="row">
+                    <div>
+                        <img src="http://gull-html-laravel.ui-lib.com/assets/images/logo.png" alt=""
+                             style="width: 70px; margin-left: 30px">
+                    </div>
+                    <div style="margin: 20px;font-size: 22px;font-weight: 500;">
+                        Ez Books
+                    </div>
+                </div>
             </div>
         </div>
         <div class="sidebar card">
-            <div class="body">
-                <ul>
-                    <li>
-                        <router-link to="/">Home</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/accounts" class="chart-of-account-link">Chart Of Accounts</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/accounts/add">add Account</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/journals">journals</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/journals/add">new journal</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/balance-sheet">Balance Sheet</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/trial-balance">Trial Balance</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/general-ledger">General Ledger</router-link>
-                    </li>
-                </ul>
-            </div>
-
+            <ul class="main-menu">
+                <li>
+                    <router-link to="/">Home</router-link>
+                </li>
+                <li>
+                    <router-link to="/accounts" class="chart-of-account-link">Chart Of Accounts</router-link>
+                </li>
+                <li>
+                    <router-link to="/journals">Journals</router-link>
+                </li>
+                <li>
+                    <router-link to="/balance-sheet">Balance Sheet</router-link>
+                </li>
+                <li>
+                    <router-link to="/trial-balance">Trial Balance</router-link>
+                </li>
+                <li>
+                    <router-link to="/general-ledger">General Ledger</router-link>
+                </li>
+            </ul>
         </div>
         <div class="page">
             <router-view/>
@@ -62,6 +63,7 @@
 
 <style lang="scss">
     @import '~bootstrap/dist/css/bootstrap.css';
+    /*@import "~font-awesome/css/font-awesome.css";*/
     @import "~select2/dist/css/select2.css";
 
     body {
@@ -95,6 +97,7 @@
             height: 100%;
             padding: 20px;
         }
+
         /*gri*/
     }
 
@@ -113,7 +116,9 @@
         border-top: solid 2px #007bff;
         background: #ffffff;
         /*margin: 10px;*/
-        padding: 20px;
+        /*padding: 20px;*/
+        padding-top: 20px;
+        /*padding-left: 15px;*/
     }
 
     .card {
@@ -144,6 +149,14 @@
             -ms-flex-align: center;
             align-items: center;
             border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+
+            font-size: 20px;
+            font-weight: 400;
+
+
+            svg {
+                margin-right: 10px;
+            }
         }
 
         .footer {
@@ -190,6 +203,49 @@
         margin-bottom: .375rem;
         font-weight: 600;
         font-size: 0.875rem;
+    }
+
+    .sidebar .card {
+        padding: 0;
+    }
+
+    .main-menu {
+        margin: 0;
+        padding: 0;
+
+        li {
+            font-size: 12px;
+            padding: 14px 14px 14px 20px;
+            color: #90a4ae;
+            font-weight: 500;
+            list-style: none;
+
+            &:hover {
+                border-left: solid 2px #007bff;
+                color: #007bff;
+                background: #007bff0f;
+
+                a {
+                    color: #007bff;
+                }
+
+            }
+
+            a {
+                color: #54667a;
+                text-decoration: none;
+                /*padding: 14px 35px 14px 15px;*/
+                display: block;
+                font-size: 15px;
+                width: 100%;
+
+                &:hover {
+                    color: #007bff;
+                }
+
+            }
+
+        }
     }
 </style>
 
