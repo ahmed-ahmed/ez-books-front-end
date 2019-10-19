@@ -1,0 +1,109 @@
+<template>
+    <div class="sidebar card">
+        <ul class="main-menu">
+            <li>
+                <router-link to="/">
+                    <i class="fa fa-home"></i>
+                    Home
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/accounts" class="chart-of-account-link">
+                    <i class="far fa-newspaper"></i>
+                    Chart Of Accounts
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/journals">
+                    <i class="far fa-newspaper"></i>
+                    Journals
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/balance-sheet">
+                    <i class="far fa-newspaper"></i>
+                    Balance Sheet
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/trial-balance">
+                    <i class="far fa-newspaper"></i>
+                    Trial Balance
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/general-ledger">
+                    <i class="far fa-newspaper"></i>
+                    General Ledger
+                </router-link>
+            </li>
+        </ul>
+    </div>
+</template>
+<script>
+    export default {
+        name: 'side-bar'
+    }
+</script>
+<style lang="scss">
+    .sidebar {
+        margin-left: 10px;
+        border-top: solid 2px #007bff;
+        background: #ffffff;
+    }
+
+    .sidebar .card {
+        padding: 0;
+    }
+
+    .main-menu {
+        margin: 0;
+        padding: 0;
+
+        li:first-child {
+            border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+            svg {
+                /*color: green;*/
+            }
+        }
+
+        li {
+            cursor: pointer;
+            font-size: 12px;
+            padding: 14px 14px 14px 20px;
+            color: #90a4ae;
+            font-weight: 500;
+            list-style: none;
+
+            &:hover {
+                border-left: solid 2px #54667a;
+                background: #f9f9fa;
+
+
+                /*border-left: solid 2px #007bff;*/
+                /*color: #007bff;*/
+                /*background: #007bff0f;*/
+
+                a {
+                    color: #007bff;
+                }
+
+            }
+
+            a {
+                color: #54667a;
+                text-decoration: none;
+                /*padding: 14px 35px 14px 15px;*/
+                display: block;
+                font-size: 15px;
+                width: 100%;
+
+                &:hover {
+                    color: #007bff;
+                }
+
+            }
+
+        }
+    }
+</style>

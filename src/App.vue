@@ -1,58 +1,34 @@
 <template>
     <div id="app">
         <notifications group="n"/>
-
         <div class="header">
-            <div class="card">
-                <div class="row">
-                    <div>
-                        <img src="http://gull-html-laravel.ui-lib.com/assets/images/logo.png" alt=""
-                             style="width: 70px; margin-left: 30px">
-                    </div>
-                    <div style="margin: 20px;font-size: 22px;font-weight: 500;">
-                        Ez Books
-                    </div>
+            <div class="row">
+                <div class="logo">
+                    <img class="logo-img" src="https://app.zipbooks.com/assets/images/logo.svg" alt="">
                 </div>
+
             </div>
         </div>
-        <div class="sidebar card">
-            <ul class="main-menu">
-                <li>
-                    <router-link to="/">Home</router-link>
-                </li>
-                <li>
-                    <router-link to="/accounts" class="chart-of-account-link">Chart Of Accounts</router-link>
-                </li>
-                <li>
-                    <router-link to="/journals">Journals</router-link>
-                </li>
-                <li>
-                    <router-link to="/balance-sheet">Balance Sheet</router-link>
-                </li>
-                <li>
-                    <router-link to="/trial-balance">Trial Balance</router-link>
-                </li>
-                <li>
-                    <router-link to="/general-ledger">General Ledger</router-link>
-                </li>
-            </ul>
-        </div>
+        <side-bar/>
         <div class="page">
             <router-view/>
         </div>
 
-        <div class="footer">
-            <div class="card">
-                This is footer
-            </div>
-        </div>
+        <!--        <div class="footer">-->
+        <!--            <div class="card">-->
+        <!--                This is footer-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 </template>
 
 <script>
+    import SideBar from "./SideBar";
+
     export default {
         name: 'App',
         components: {
+            SideBar
             // HelloWorld,
         },
         data: () => ({
@@ -65,40 +41,48 @@
     @import '~bootstrap/dist/css/bootstrap.css';
     /*@import "~font-awesome/css/font-awesome.css";*/
     @import "~select2/dist/css/select2.css";
+    @import url('https://fonts.googleapis.com/css?family=Karla&display=swap');
+
 
     body {
         margin: 0;
-        font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        font-family: 'Karla', sans-serif;
+        /*font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;*/
         font-size: 0.9375rem;
         font-weight: 400;
         line-height: 1.5;
         color: #495057;
         text-align: left;
-        background-color: #f5f7fb;
+        background-color: #f9f9fa;
     }
 
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        margin: 10px;
         grid-gap: 10px;
         display: grid;
-        grid-template-rows: [header] 100px [body] auto [footer] 50px;
+        grid-template-rows: [header] 80px [body] auto [footer] 50px;
         grid-template-columns: [sidebar] 250px [main] auto
     }
 
     .header {
-        /*background: #ffffff;*/
+        background: #fff;
+        border-bottom: solid 1px #e4e7eb;
+        height: 64px;
         grid-row: header;
         grid-column-start: 1;
         grid-column-end: 3;
 
-        .card {
-            height: 100%;
-            padding: 20px;
+        .logo {
+            margin: 20px 36px;
+
+            img {
+                display: inline-block;
+                line-height: 64px;
+                max-height: 26px;
+            }
         }
 
-        /*gri*/
     }
 
     .footer {
@@ -112,22 +96,9 @@
         }
     }
 
-    .sidebar {
-        border-top: solid 2px #007bff;
-        background: #ffffff;
-        /*margin: 10px;*/
-        /*padding: 20px;*/
-        padding-top: 20px;
-        /*padding-left: 15px;*/
-    }
-
     .card {
-        /*margin: 10px;*/
         border: 1px solid rgba(0, 40, 100, 0.12);
-        border-radius: 3px;
-        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-
-
+        border-radius: 0;
         .body {
             position: relative;
             margin-bottom: 1.5rem;
@@ -140,9 +111,8 @@
         }
 
         .header {
-            border-radius: calc(3px - 1px) calc(3px - 1px) 0 0;
             background: none;
-            padding: 0.5rem 1.5rem;
+            padding: 10px 20px;
             display: -ms-flexbox;
             display: flex;
             min-height: 3.5rem;
@@ -152,7 +122,6 @@
 
             font-size: 20px;
             font-weight: 400;
-
 
             svg {
                 margin-right: 10px;
@@ -168,13 +137,17 @@
         }
     }
 
+    .page {
+        padding-right: 10px;
+    }
+
+
     #nav {
         padding: 30px;
     }
 
     .table-bordered {
         border-top: solid 3px #eeeeee;
-        border-radius: 5px;
     }
 
     .form-group {
@@ -194,7 +167,6 @@
         background-color: #fff;
         background-clip: padding-box;
         border: 1px solid rgba(0, 40, 100, 0.12);
-        border-radius: 3px;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
 
@@ -209,43 +181,5 @@
         padding: 0;
     }
 
-    .main-menu {
-        margin: 0;
-        padding: 0;
-
-        li {
-            font-size: 12px;
-            padding: 14px 14px 14px 20px;
-            color: #90a4ae;
-            font-weight: 500;
-            list-style: none;
-
-            &:hover {
-                border-left: solid 2px #007bff;
-                color: #007bff;
-                background: #007bff0f;
-
-                a {
-                    color: #007bff;
-                }
-
-            }
-
-            a {
-                color: #54667a;
-                text-decoration: none;
-                /*padding: 14px 35px 14px 15px;*/
-                display: block;
-                font-size: 15px;
-                width: 100%;
-
-                &:hover {
-                    color: #007bff;
-                }
-
-            }
-
-        }
-    }
 </style>
 
