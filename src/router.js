@@ -1,25 +1,38 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Home from './views/Home.vue'
-// import AccountsList from './components/accounts/list'
+
+import TokenService from './services/storage.service'
+
 import BalanceSheet from './components/balance-sheet/balance-sheet'
 import TrialBalance from './components/trial-balance/trial-balance'
 import journalsList from './components/journals/journals-list'
 import addJournal from './components/journals/add-journal'
 import generalLedger from './components/general-ledger/general-ledger'
 import AccountsList from './components/accounts/list';
-import addAccount from './components/accounts/add-account';
-import Login from './components/login'
+import addAccount from './components/accounts/add-account'
+import login from './components/login/login'
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
+    mode: 'history',
     routes: [
-        { path: '/login', component: Login },
+        {   
+            name: 'login',
+            path: '/login', 
+            component: login,
+            meta: {
+                public: true,  // Allow access to guest user.
+                onlyWhenLoggedOut: true
+            } 
+        },
         {
             path: '/',
             name: 'home',
-            component: BalanceSheet
+            component: BalanceSheet,
+            meta: {
+                public: false,  // Allow access to only loggedin user.
+              }
         },
         {
             path: '/accounts/add',
@@ -67,15 +80,25 @@ export default new Router({
         }
     ]
 });
-//     .beforeEach((to, from, next) => {
-//     // redirect to login page if not logged in and trying to access a restricted page
-//     const publicPages = ['/login'];
-//     const authRequired = !publicPages.includes(to.path);
-//     const loggedIn = localStorage.getItem('user');
-//
-//     if (authRequired && !loggedIn) {
-//         return next('/login');
-//     }
-//
-//     next();
-// });
+
+router.beforeEach((to, from, next) => {
+    const isPublic = to.matched.some(record => record.meta.public)
+    const onlyWhenLoggedOut = to.matched.some(record => record.meta.onlyWhenLoggedOut)
+    const loggedIn = !!TokenService.getToken();
+  
+    if (!isPublic && !loggedIn) {
+      return next({
+        path:'/login',
+        query: {redirect: to.fullPath}  // Store the full path to redirect the user to after login
+      });
+    }
+  
+    // Do not allow user to visit login page or register page if they are logged in
+    if (loggedIn && onlyWhenLoggedOut) {
+      return next('/home')
+    }
+  
+    next();
+  }) 
+
+  export default router;
