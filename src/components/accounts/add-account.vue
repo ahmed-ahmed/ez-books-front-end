@@ -38,8 +38,7 @@
 
         </div>
         <div class="footer">
-            <!-- Button -->
-            <button id="singlebutton" name="singlebutton" class="btn btn-primary save-btn" @click="save()">Save</button>
+            <button class="btn btn-primary save-btn" @click="save()">Save</button>
         </div>
     </div>
 </template>

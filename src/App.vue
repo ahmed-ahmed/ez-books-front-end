@@ -39,10 +39,9 @@
 
 <style lang="scss">
     @import '~bootstrap/dist/css/bootstrap.css';
-    /*@import "~font-awesome/css/font-awesome.css";*/
-    @import "~select2/dist/css/select2.css";
+    /*@import "~select2/dist/css/select2.css";*/
     @import url('https://fonts.googleapis.com/css?family=Karla&display=swap');
-
+    @import "~element-ui/lib/theme-chalk/index.css";
 
     body {
         margin: 0;
@@ -65,6 +64,12 @@
         grid-template-columns: [sidebar] 250px [main] auto
     }
 
+    a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: none;
+        }
+    }
     .header {
         background: #fff;
         border-bottom: solid 1px #e4e7eb;
@@ -74,7 +79,8 @@
         grid-column-end: 3;
 
         .logo {
-            margin: 20px 36px;
+            padding: 19px 96px 19px 35px;
+            border-right: solid 1px #e3e7eb;
 
             img {
                 display: inline-block;

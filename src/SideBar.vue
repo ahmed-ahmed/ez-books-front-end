@@ -70,7 +70,6 @@
         li {
             cursor: pointer;
             font-size: 12px;
-            padding: 14px 14px 14px 20px;
             color: #90a4ae;
             font-weight: 500;
             list-style: none;
@@ -93,7 +92,7 @@
             a {
                 color: #54667a;
                 text-decoration: none;
-                /*padding: 14px 35px 14px 15px;*/
+                padding: 14px 14px 14px 20px;
                 display: block;
                 font-size: 15px;
                 width: 100%;

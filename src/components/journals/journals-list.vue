@@ -6,30 +6,36 @@
                 Journals
             </div>
             <div class="col-7 text-right">
-                <router-link to="/journals/add" class="btn btn-outline-primary btn-sm add-account-link">
-                    <i class="fas fa-plus"></i>
+                <router-link to="/journals/add" class="el-button el-button--default el-button--mini add-account-link">
+                    <i class="el-icon-plus"></i>
                     Add Journal
                 </router-link>
             </div>
 
         </div>
         <div class="body">
-            <table class="table table-bordered table-striped">
-                <tr>
-                    <td>Date</td>
-                    <td>Journal #</td>
-                    <td>Status</td>
-                    <td>Amount</td>
-                </tr>
-
-                <tr v-for="j in journals" :key="j.id">
-                    <!--                    <td>{{j.id}}</td>-->
-                    <td>{{j.date}}</td>
-                    <td>{{j.no}}</td>
-                    <td>{{j.status}}</td>
-                    <td>{{j.amount}}</td>
-                </tr>
-            </table>
+            <!--            :default-sort = "{prop: 'date', order: 'descending'}"-->
+            <el-table :data="journals">
+                <el-table-column
+                        prop="date"
+                        label="Date"
+                        sortable
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="no"
+                        label="Journal #"
+                        width="180">
+                </el-table-column>
+                <el-table-column
+                        prop="status"
+                        label="Status">
+                </el-table-column>
+                <el-table-column
+                        prop="amount"
+                        label="Amount">
+                </el-table-column>
+            </el-table>
         </div>
     </div>
 </template>
