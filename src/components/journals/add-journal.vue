@@ -82,7 +82,7 @@
     import api from "../../config/api.config";
     import select2 from "../select2";
     import {required, minLength} from "vuelidate/lib/validators";
-    import Vue from 'vue'
+    // import Vue from 'vue'
 
     export default {
         name: "addJournal",
@@ -129,36 +129,39 @@
                 return a;
             }, []);
             this.addLine();
+            this.addLine();
         },
         methods: {
             addLine: function () {
                 this.journal.journalDetails.push({debt: 0, credit: 0, account: {}});
             },
-            save: function () {
+            save: async function () {
                 this.$v.journal.$touch();
                 if (this.$v.journal.$error) return;
 
                 if (!(this.totalCredit > 0 && this.totalDebit > 0)) {
-                    Vue.notify({
-                        group: 'n',
-                        title: `Total debt and total credit must be greater than 0`,
-                        text: ``
-
+                    this.$notify.error({
+                        title: 'Error',
+                        message: 'Total debt and total credit must be greater than 0'
                     });
                     return;
                 }
 
                 if (this.totalCredit !== this.totalDebit) {
-                    Vue.notify({
-                        group: 'n',
-                        title: `Total debt must equals total credit!`,
-                        text: ``
-
+                    this.$notify.error({
+                        title: 'Error',
+                        message: 'Total debt must equals total credit!'
                     });
                     return;
                 }
 
-                api.post(`journals`, this.journal).then(console.log)
+                await api.post(`journals`, this.journal);
+                this.$notify.success({
+                    title: 'Info',
+                    message: `Journal Is Saved Successfully!`,
+                    duration: 1000
+                });
+                this.$router.push('/journals')
             }
         },
         computed: {

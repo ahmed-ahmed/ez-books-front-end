@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <notifications group="n"/>
+<!--        <notifications group="n"/>-->
         <div class="header">
             <div class="row">
                 <div class="logo">

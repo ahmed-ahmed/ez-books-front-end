@@ -45,8 +45,8 @@
 
 <script>
     import api from "../../config/api.config";
-    import {required, email, minLength} from "vuelidate/lib/validators";
-    import Vue from 'vue'
+    import {required} from "vuelidate/lib/validators";
+
 
     export default {
         name: "addAccount",
@@ -76,12 +76,18 @@
                 if (this.$v.account.$error) return;
 
                 await api.post(`accounts`, this.account);
-                Vue.notify({
-                    group: 'n',
-                    title: `Account ${this.account.name} Saved Successfully!`,
-                    text: ``
-
+                this.$notify.success({
+                    title: 'Info',
+                    message: `Account ${this.account.name} Saved Successfully!`,
+                    duration: 1000
                 });
+
+                // Vue.notify({
+                //     group: 'n',
+                //     title: `Account ${this.account.name} Saved Successfully!`,
+                //     text: ``
+                //
+                // });
 
                 this.$v.account.$reset();
                 this.account.name = null;

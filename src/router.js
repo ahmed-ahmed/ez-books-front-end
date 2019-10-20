@@ -67,7 +67,7 @@ const router = new Router({
 
         {
             path: '/journals',
-            name: '/journals',
+            name: 'journals',
             component: journalsList
         },
         {
