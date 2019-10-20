@@ -11,6 +11,7 @@ import generalLedger from './components/general-ledger/general-ledger'
 import AccountsList from './components/accounts/list';
 import addAccount from './components/accounts/add-account'
 import login from './components/login/login'
+import register from './components/login/register'
 
 Vue.use(Router);
 
@@ -21,6 +22,15 @@ const router = new Router({
             name: 'login',
             path: '/login', 
             component: login,
+            meta: {
+                public: true,  // Allow access to guest user.
+                onlyWhenLoggedOut: true
+            } 
+        },
+        {   
+            name: 'register',
+            path: '/register', 
+            component: register,
             meta: {
                 public: true,  // Allow access to guest user.
                 onlyWhenLoggedOut: true

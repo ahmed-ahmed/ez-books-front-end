@@ -102,7 +102,33 @@ const UserService = {
         
         // NOTE: Again, we'll cover the 401 Interceptor a bit later. 
         //ApiService.unmount401Interceptor()
+    },
+
+    /**
+     * Register new user
+     * 
+     * @returns registered user
+     * @throws AuthenticationError 
+    **/
+   register: async function(firstname, lastname, username, password) {
+    const requestData = {
+        method: 'post',
+        url: "/api/users/register",
+        data: {
+            'firstName': firstname,
+            'lastName': lastname,
+            'username': username,
+            'password': password
+        }
     }
+
+    try {
+        const response = await ApiService.customRequest(requestData)
+        return response.data
+    } catch (error) {
+        throw new AuthenticationError(error.response.status, error.response.data.detail)
+    }
+},
 }
 
 export default UserService

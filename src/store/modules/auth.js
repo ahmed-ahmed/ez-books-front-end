@@ -8,7 +8,9 @@ const state =  {
     accessToken: TokenService.getToken(),
     authenticationSuccess: false,
     authenticationErrorCode: 0,
-    authenticationError: ''
+    authenticationError: '',
+    registering: false,
+    registerationSuccess: false
 }
 
 const getters = {
@@ -30,6 +32,14 @@ const getters = {
 
     authenticating: (state) => {
         return state.authenticating
+    },
+
+    registering: (state) => {
+        return state.registering
+    },
+
+    registerationSuccess: (state) => {
+        return state.registerationSuccess
     }
 }
 
@@ -55,6 +65,24 @@ const actions = {
         UserService.logout()
         commit('logoutSuccess')
         router.push('/login')
+    },
+
+    async register({ commit }, {firstname, lastname, username, password}) {
+        commit('registerRequest');
+        try {
+
+            const registeredUser = await UserService.register(firstname, lastname, username, password)
+            commit('registerSuccess')
+            actions.login({ commit }, {
+                username: username,
+                password: password
+              });
+        } catch (e) {
+            if (e instanceof AuthenticationError) {
+                commit('loginError', {errorCode: e.errorCode, errorMessage: e.message})
+            }
+            return false
+        }
     }
 }
 
@@ -79,7 +107,16 @@ const mutations = {
 
     logoutSuccess(state) {
         state.accessToken = ''
-    }
+    },
+
+    registerRequest(state) {
+        state.registering = true;
+    },
+
+    registerSuccess(state) {
+        state.registerationSuccess = true;
+        state.registering = false;
+    },
 }
 
 export default {
