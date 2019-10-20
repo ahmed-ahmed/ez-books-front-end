@@ -9,48 +9,11 @@
 
             </div>
         </div>
-        <side-bar/>
+        <side-bar v-if="loggedIn"/>
         <div class="page">
             <router-view/>
         </div>
       </div>
-    </div>
-    <div class="sidebar card">
-      <ul class="main-menu">
-        <li>
-          <router-link to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/accounts" class="chart-of-account-link">Chart Of Accounts</router-link>
-        </li>
-        <li>
-          <router-link to="/journals">Journals</router-link>
-        </li>
-        <li>
-          <router-link to="/balance-sheet">Balance Sheet</router-link>
-        </li>
-        <li>
-          <router-link to="/trial-balance">Trial Balance</router-link>
-        </li>
-        <li>
-          <router-link to="/general-ledger">General Ledger</router-link>
-        </li>
-        <li v-if="loggedIn">
-            <a @click="logout()">logout</a>
-        </li>
-      </ul>
-    </div>
-    <div class="page">
-      <router-view/>
-    </div>
-
-        <!--        <div class="footer">-->
-        <!--            <div class="card">-->
-        <!--                This is footer-->
-        <!--            </div>-->
-        <!--        </div>-->
-    </div>
-  </div>
 </template>
 
 <script>
@@ -69,9 +32,6 @@
           ...mapGetters("auth", [
             "loggedIn"
           ])
-        },
-        methods: {
-          ...mapActions("auth", ["logout"])
         }
   };
 

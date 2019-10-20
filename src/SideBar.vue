@@ -37,12 +37,25 @@
                     General Ledger
                 </router-link>
             </li>
+            <li v-if="loggedIn">
+                <a @click="logout()">logout</a>
+            </li>
         </ul>
     </div>
 </template>
 <script>
+    import { mapGetters, mapActions } from "vuex";
+
     export default {
-        name: 'side-bar'
+        name: 'side-bar',
+        computed: {
+          ...mapGetters("auth", [
+            "loggedIn"
+          ])
+        },
+        methods: {
+          ...mapActions("auth", ["logout"])
+        }
     }
 </script>
 <style lang="scss">
