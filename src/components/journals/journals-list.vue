@@ -32,8 +32,12 @@
                         label="Status">
                 </el-table-column>
                 <el-table-column
+                        align="right"
                         prop="amount"
                         label="Amount">
+                </el-table-column>
+                <el-table-column
+                        label="Created by">
                 </el-table-column>
             </el-table>
         </div>
@@ -54,6 +58,11 @@
             let res = await api.get(`journals`);
             this.journals = res.data;
         },
+        methods: {
+            // currencyFormat: function(row, column, cellValue, index) {
+            //     return row
+            // }
+        }
 
     }
 </script>

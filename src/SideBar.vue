@@ -9,31 +9,31 @@
             </li>
             <li>
                 <router-link to="/accounts" class="chart-of-account-link">
-                    <i class="far fa-newspaper"></i>
+                    <i class="el-icon-money"></i>
                     Chart Of Accounts
                 </router-link>
             </li>
             <li>
                 <router-link to="/journals">
-                    <i class="far fa-newspaper"></i>
+                    <i class="el-icon-wallet"></i>
                     Journals
                 </router-link>
             </li>
             <li>
                 <router-link to="/balance-sheet">
-                    <i class="far fa-newspaper"></i>
+                    <i class="el-icon-refrigerator"></i>
                     Balance Sheet
                 </router-link>
             </li>
             <li>
                 <router-link to="/trial-balance">
-                    <i class="far fa-newspaper"></i>
+                    <i class="el-icon-s-marketing"></i>
                     Trial Balance
                 </router-link>
             </li>
             <li>
                 <router-link to="/general-ledger">
-                    <i class="far fa-newspaper"></i>
+                    <i class="el-icon-s-data"></i>
                     General Ledger
                 </router-link>
             </li>
@@ -58,7 +58,7 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .sidebar {
         margin-left: 10px;
         border-top: solid 2px #007bff;
@@ -117,5 +117,10 @@
             }
 
         }
+    }
+
+    i {
+        font-size: 20px;
+        margin-right: 3px;
     }
 </style>

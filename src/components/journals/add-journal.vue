@@ -2,78 +2,99 @@
     <div class="card">
         <div class="header">Add Journal</div>
         <div class="body">
-            <div class="col-4">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="form-label" for="textinput">Date</label>
-                        <el-date-picker v-model="journal.date" type="date" placeholder="Pick a day"/>
-                        <div class="text-danger" v-if="$v.journal.date.$error">Date type is required!</div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="form-label" for="textinput">Journal# </label>
-                        <input id="textinput" name="textinput" type="text" placeholder="Enter Journal No."
-                               class="form-control input-md" required="">
-                    </div>
-
-                    <!-- Textarea -->
-                    <div class="form-group">
-                        <label class="form-label" for="Notes">Notes</label>
-                        <textarea class="form-control" id="Notes"/>
-
-                    </div>
-                </form>
-            </div>
-
-            <div class="text-danger" v-if="$v.journal.journalDetails.$error">
-                <div v-if="!$v.journal.journalDetails.minLength">You must have at least two line items</div>
-            </div>
-            <div class="col-12">
-                <table class="table">
-                    <tr>
-                        <th>Account</th>
-                        <th>Description</th>
-                        <th>Debits</th>
-                        <th>Credits</th>
-                        <th></th>
-                    </tr>
-                    <tr v-for="(d,i) in journal.journalDetails" :key="d.id">
-                        <td>
-                            <select2 :options="accounts" v-model="d.account.id">
-                            </select2>
-                            <div class="text-danger" v-if="$v.journal.journalDetails.$each[i].account.id.$error">
-                                Please select account!
+            <div class="row">
+                <div class="col-8">
+                    <form class="form-horizontal">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="form-label required" for="textinput">Date</label>
+                                    <el-date-picker v-model="journal.date" type="date" placeholder="Pick a day"/>
+                                    <div class="text-danger" v-if="$v.journal.date.$error">Date type is required!</div>
+                                </div>
                             </div>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" v-model="d.debt"/>
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" v-model="d.credit"/>
-                        </td>
-                        <td>
-                            <el-button type="plain" size="small" icon="el-icon-delete"></el-button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-right">Sub Total</td>
-                        <td>{{totalDebit}}</td>
-                        <td>{{totalCredit}}</td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label class="form-label" for="textinput">Journal# </label>
+                                    <input id="textinput" name="textinput" type="text" placeholder="Enter Journal No."
+                                           class="form-control input-md" style="height: 40px; margin-top: 10px;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="form-label" for="Notes">Notes</label>
+                            <textarea class="form-control" id="Notes"/>
 
-            <div class="form-group">
-                <div class="col-md-4">
-                    <button class="btn btn-primary btn-sm" @click="addLine()">add another line</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="m-5"></div>
+            <div class="row">
+                <div class="text-danger" v-if="$v.journal.journalDetails.$error">
+                    <div v-if="!$v.journal.journalDetails.minLength">You must have at least two line items</div>
+                </div>
+                <div class="col-12">
+                    <table class="table">
+                        <tr>
+                            <th colspan="2">Account</th>
+                            <th>Debits</th>
+                            <th>Credits</th>
+                            <th>
+<!--                                <i class="el-icon-plus" style="color: green; font-weight: bolder"></i>-->
+                            </th>
+                        </tr>
+                        <tr v-for="(d,i) in journal.journalDetails" :key="d.id">
+                            <td colspan="2">
+                                <select2 :options="accounts" v-model="d.account.id">
+                                </select2>
+                                <div class="text-danger" v-if="$v.journal.journalDetails.$each[i].account.id.$error">
+                                    Please select account!
+                                </div>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-right" v-model="d.debt"/>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-right" v-model="d.credit"/>
+                            </td>
+                            <td>
+                                <el-button type="danger" size="small" icon="el-icon-delete" round
+                                           @click="deleteLine(i)"></el-button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <el-button round size="small" icon="el-icon-plus" @click="addLine()">Add Another Line</el-button>
+                            </td>
+                            <td class="text-right">
+                                Sub Total
+                            </td>
+                            <td class="text-right">{{totalDebit}}</td>
+                            <td class="text-right">{{totalCredit}}</td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-right">
+
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <button name="singlebutton" class="btn btn-primary save-btn" @click="save()">Save</button>
+            <el-button type="plain" @click="save()">
+                <i class="far fa-save"></i>
+                Save As Draft
+            </el-button>
+
+            <el-button type="primary" @click="save()">
+                <i class="far fa-save"></i>
+                Save And Publish
+            </el-button>
         </div>
     </div>
 </template>
@@ -134,6 +155,9 @@
         methods: {
             addLine: function () {
                 this.journal.journalDetails.push({debt: 0, credit: 0, account: {}});
+            },
+            deleteLine: function (index) {
+                this.journal.journalDetails.splice(index, 1);
             },
             save: async function () {
                 this.$v.journal.$touch();

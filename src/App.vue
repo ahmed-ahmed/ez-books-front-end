@@ -1,11 +1,11 @@
 <template>
     <div id="app">
-<!--        <notifications group="n"/>-->
         <div class="header">
-            <div class="row">
-                <div class="logo">
-                    <img class="logo-img" src="https://app.zipbooks.com/assets/images/logo.svg" alt="">
-                </div>
+            <div class="logo">
+                <img class="logo-img" src="https://app.zipbooks.com/assets/images/logo.svg" alt="">
+            </div>
+            <div style="float: left">
+                <el-button type="warning" icon="el-icon-star-off" circle></el-button>
 
             </div>
         </div>
@@ -63,16 +63,22 @@
         -moz-osx-font-smoothing: grayscale;
         grid-gap: 10px;
         display: grid;
+
+        width: 100vw;
+        height: 100vh;
+
         grid-template-rows: [header] 80px [body] auto [footer] 50px;
         grid-template-columns: [sidebar] 250px [main] auto
     }
 
     a {
         text-decoration: none;
+
         &:hover {
             text-decoration: none;
         }
     }
+
     .header {
         background: #fff;
         border-bottom: solid 1px #e4e7eb;
@@ -84,6 +90,7 @@
         .logo {
             padding: 19px 96px 19px 35px;
             border-right: solid 1px #e3e7eb;
+            width: 249px;
 
             img {
                 display: inline-block;
@@ -108,6 +115,7 @@
     .card {
         border: 1px solid rgba(0, 40, 100, 0.12);
         border-radius: 0;
+        height: 100%;
         .body {
             position: relative;
             margin-bottom: 1.5rem;
@@ -128,7 +136,7 @@
             -ms-flex-align: center;
             align-items: center;
             border-bottom: 1px solid rgba(0, 40, 100, 0.12);
-
+            border-top: solid 2px #007bff;
             font-size: 20px;
             font-weight: 400;
 
@@ -184,6 +192,17 @@
         margin-bottom: .375rem;
         font-weight: 600;
         font-size: 0.875rem;
+    }
+
+    .required {
+        &:before {
+            color: red;
+            content: '*';
+            padding-top: 4px;
+            display: inline-block;
+            vertical-align: middle;
+            padding-right: 4px;
+        }
     }
 
     .sidebar .card {
