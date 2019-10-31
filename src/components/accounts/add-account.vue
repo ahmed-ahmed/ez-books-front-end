@@ -72,19 +72,12 @@
                 this.$v.account.$touch();
                 if (this.$v.account.$error) return;
 
-                await api.post(`accounts`, this.account);
+                await this.$store.dispatch('accounts/add', this.account);
                 this.$notify.success({
                     title: 'Info',
                     message: `Account ${this.account.name} Saved Successfully!`,
                     duration: 1000
                 });
-
-                // Vue.notify({
-                //     group: 'n',
-                //     title: `Account ${this.account.name} Saved Successfully!`,
-                //     text: ``
-                //
-                // });
 
                 this.$v.account.$reset();
                 this.account.name = null;

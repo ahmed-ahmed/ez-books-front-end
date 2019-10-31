@@ -28,6 +28,9 @@
             // HelloWorld,
         },
         data: () => ({}),
+        created: function() {
+            this.$store.dispatch('accounts/list');
+        },
         computed: {
           ...mapGetters("auth", [
             "loggedIn"

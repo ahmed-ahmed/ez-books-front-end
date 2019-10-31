@@ -13,43 +13,32 @@
         </div>
         <div class="body">
             <el-table class="chart-of-account-list"
-                    :data="accounts"
-                    :default-sort = "{prop: 'name', order: 'descending'}"
-                    style="width: 100%">
+                      :data="accounts"
+                      :default-sort="{prop: 'name', order: 'descending'}"
+                      style="width: 100%">
                 <el-table-column
                         prop="name"
                         label="Account"
                         sortable
-                        >
+                >
                 </el-table-column>
                 <el-table-column
                         prop="parentName"
                         label="Type"
                         sortable
-                        >
+                >
                 </el-table-column>
             </el-table>
         </div>
     </div>
 </template>
 <script>
-    import api from '../../config/api.config';
+    import {mapState} from 'vuex';
 
     export default {
         name: 'AccountsList',
-        data: () => (
-            {
-                accounts: {}
-            }
-        ),
-        mounted() {
-            this.getAccounts();
-        },
-        methods: {
-            async getAccounts() {
-                let response = await api.get(`accounts`);
-                this.accounts = response.data;
-            }
-        }
+        computed: mapState({
+            accounts: state => state.accounts.list
+        })
     }
 </script>
