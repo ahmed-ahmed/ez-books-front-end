@@ -4,11 +4,12 @@
             <div class="logo">
                 <img class="logo-img" src="https://app.zipbooks.com/assets/images/logo.svg" alt="">
             </div>
-            <div style="float: left">
+            <div style="float: left; display: none" class="hidden">
                 <el-button type="warning" icon="el-icon-star-off" circle></el-button>
 
             </div>
         </div>
+        <div  v-if="!loggedIn"></div>
         <side-bar v-if="loggedIn"/>
         <div class="page">
             <router-view/>

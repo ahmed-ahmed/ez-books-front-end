@@ -100,7 +100,7 @@
 </template>
 
 <script>
-    import api from "../../config/api.config";
+    import api from '../../services/api.service';
     import select2 from "../select2";
     import {required, minLength} from "vuelidate/lib/validators";
     // import Vue from 'vue'

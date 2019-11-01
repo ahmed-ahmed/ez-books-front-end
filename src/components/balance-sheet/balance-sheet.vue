@@ -41,12 +41,12 @@
     </div>
 </template>
 <script>
-    import api from '../../config/api.config';
-    import BalanceSheetAccounts from "./BalanceSheetAccounts";
+    import api from '../../services/api.service';
+    // import BalanceSheetAccounts from "./BalanceSheetAccounts";
 
     export default {
         name: 'BalanceSheet',
-        components: {BalanceSheetAccounts},
+        // components: {BalanceSheetAccounts},
         data: () => (
             {
                 accountTypes: {}

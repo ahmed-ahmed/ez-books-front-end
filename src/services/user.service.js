@@ -13,16 +13,16 @@ class AuthenticationError extends Error {
 
 const UserService = {
     /**
-     * Login the user and store the access token to TokenService. 
-     * 
+     * Login the user and accounting the access token to TokenService.
+     *
      * @returns access_token
-     * @throws AuthenticationError 
-    **/
-    login: async function(username, password) {
+     * @throws AuthenticationError
+     **/
+    login: async function (username, password) {
         var qs = require('qs');
         const requestData = {
             method: 'post',
-            url: "/api/authenticate",
+            url: "/authenticate",
             data: qs.stringify({
                 'grant_type': 'password',
                 'username': username,
@@ -40,12 +40,12 @@ const UserService = {
 
         try {
             const response = await ApiService.customRequest(requestData)
-            //response.data.access_token = response.data.refresh_token = response.data.token //remove after testing 
+            //response.data.access_token = response.data.refresh_token = response.data.token //remove after testing
             TokenService.saveToken(response.data.access_token)
             //TokenService.saveRefreshToken(response.data.refresh_token)
             ApiService.setHeader()
-            
-            // NOTE: We haven't covered this yet in our ApiService 
+
+            // NOTE: We haven't covered this yet in our ApiService
             //       but don't worry about this just yet - I'll come back to it later
             ApiService.mount401Interceptor();
 
@@ -57,8 +57,8 @@ const UserService = {
 
     /**
      * Refresh the access token.
-    **/
-    refreshToken: async function() {
+     **/
+    refreshToken: async function () {
         const refreshToken = TokenService.getRefreshToken()
 
         const requestData = {
@@ -90,47 +90,47 @@ const UserService = {
     },
 
     /**
-     * Logout the current user by removing the token from storage. 
-     * 
+     * Logout the current user by removing the token from storage.
+     *
      * Will also remove `Authorization Bearer <token>` header from future requests.
-    **/
+     **/
     logout() {
-        // Remove the token and remove Authorization header from Api Service as well 
+        // Remove the token and remove Authorization header from Api Service as well
         TokenService.removeToken()
         TokenService.removeRefreshToken()
         ApiService.removeHeader()
-        
-        // NOTE: Again, we'll cover the 401 Interceptor a bit later. 
+
+        // NOTE: Again, we'll cover the 401 Interceptor a bit later.
         //ApiService.unmount401Interceptor()
     },
 
     /**
      * Register new user
-     * 
+     *
      * @returns registered user
-     * @throws AuthenticationError 
-    **/
-   register: async function(firstname, lastname, username, password) {
-    const requestData = {
-        method: 'post',
-        url: "/api/users/register",
-        data: {
-            'firstName': firstname,
-            'lastName': lastname,
-            'username': username,
-            'password': password
-        }
-    }
+     * @throws AuthenticationError
+     **/
+    register: async function (firstname, lastname, username, password) {
+        const requestData = {
+            method: 'post',
+            url: "/users/register",
+            data: {
+                firstname,
+                lastname,
+                username,
+                password
+            }
+        };
 
-    try {
-        const response = await ApiService.customRequest(requestData)
-        return response.data
-    } catch (error) {
-        throw new AuthenticationError(error.response.status, error.response.data.detail)
-    }
-},
+        try {
+            const response = await ApiService.customRequest(requestData)
+            return response.data
+        } catch (error) {
+            throw new AuthenticationError(error.response.status, error.response.data.detail)
+        }
+    },
 }
 
 export default UserService
 
-export { UserService, AuthenticationError }
+export {UserService, AuthenticationError}
