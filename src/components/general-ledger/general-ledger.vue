@@ -4,21 +4,20 @@
             General Ledger
         </div>
         <div class="body">
-            <table class="table table-bordered table-striped">
-
-                <tr>
-                    <th>Account</th>
-                    <th class="text-right">Debt</th>
-                    <th class="text-right">Credit</th>
-                    <th class="text-right">Balance</th>
-                </tr>
-                <tr v-for="g in generalLedger" :key="g.id">
-                    <td>{{g.name}}</td>
-                    <td class="text-right">{{g.creditBalance}}</td>
-                    <td class="text-right">{{g.debtBalance}}</td>
-                    <td class="text-right">{{g.creditBalance - g.debtBalance}}</td>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="mx-auto col-11">
+                    <el-table class="general-ledger" :data="generalLedger" style="width: 80%">
+                        <el-table-column label="Account" prop="name"></el-table-column>
+                        <el-table-column label="Debt" prop="creditBalance" class-name="text-right"></el-table-column>
+                        <el-table-column label="Credit" prop="debtBalance" class-name="text-right"></el-table-column>
+                        <el-table-column label="Balance" class-name="text-right">
+                            <template slot-scope="scope">
+                                <span class="text-right">{{ scope.row.creditBalance - scope.row.debtBalance }}</span>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+            </div>
         </div>
     </div>
 </template>

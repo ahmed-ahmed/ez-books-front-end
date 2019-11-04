@@ -16,11 +16,15 @@
         <div class="body">
             <!--            :default-sort = "{prop: 'date', order: 'descending'}"-->
             <el-table :data="journals">
-                <el-table-column
-                        prop="date"
-                        label="Date"
-                        sortable
-                        width="180">
+                <el-table-column prop="date" label="Date" sortable width="180">
+                    <template slot-scope="scope">
+                        <span style="margin-left: 10px">
+                            <a href="#">
+                                {{ scope.row.date }}
+                            </a>
+                        </span>
+                    </template>
+
                 </el-table-column>
                 <el-table-column
                         prop="no"

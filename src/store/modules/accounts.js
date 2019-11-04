@@ -1,4 +1,4 @@
-import api from '../../config/api.config';
+import api from '../../services/api.service';
 
 export default {
     namespaced: true,

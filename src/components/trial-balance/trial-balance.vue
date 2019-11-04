@@ -4,7 +4,7 @@
             Trial Balance
         </div>
         <div class="body">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th colspan="2">Account</th>
@@ -25,10 +25,10 @@
                     </tr>
                 </template>
                 <tr>
-<!--                    <td><b>Total</b></td>-->
-<!--                    <td></td>-->
-<!--                    <td>{{totalDebt}}</td>-->
-<!--                    <td>{{totalCredit}}</td>-->
+                    <td><b>Total</b></td>
+                    <td></td>
+                    <td>{{totalDebt}}</td>
+                    <td>{{totalCredit}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -43,7 +43,10 @@
         name: "TrialBalance",
         data: () => (
             {
-                accounts: [],
+                accounts: {
+                    Assets: [],
+                    Liability: [],
+                },
                 // assets: [],
                 // equities: [],
                 // income: [],
@@ -51,7 +54,7 @@
             }
         ),
         mounted: async function() {
-            let res = await api.get(`reports/accountBalances`);
+            let res = await api.get(`reports/trialBalance`);
             this.accounts = this.groupBy(res.data, `accountType`)
             // api.get(`reports/accountBalances`).then(res => {
             //     this.assets = Object.values(res.data.Assets).flatMap(a => a);
@@ -61,15 +64,15 @@
             // });
         },
         computed: {
-            // allAccounts: function () {
-            //     return [...this.assets, ...this.equities, ...this.income, ...this.expense]
-            // },
-            // totalCredit: function () {
-            //     return this.allAccounts.map(a => a.credit).reduce(((a, b) => a + b), 0);
-            // },
-            // totalDebt: function () {
-            //     return this.allAccounts.map(a => a.debt).reduce(((a, b) => a + b), 0);
-            // }
+            allAccounts: function () {
+                return [...this.accounts.Assets, ...this.accounts.Liability]//, ...this.accounts.income, ...this.accounts.expense]
+            },
+            totalCredit: function () {
+                return this.allAccounts.map(a => a.creditBalance).reduce(((a, b) => a + b), 0);
+            },
+            totalDebt: function () {
+                return this.allAccounts.map(a => a.debtBalance).reduce(((a, b) => a + b), 0);
+            }
         },
         methods: {
             groupBy: function (xs, key) {
