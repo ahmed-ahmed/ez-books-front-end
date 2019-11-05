@@ -5,17 +5,13 @@ pipeline {
       steps {
         sh 'yarn'
         sh 'yarn build'
+        sh 'docker build -t apache-front-end .'
       }
     }
-
     stage('deploy') {
       steps {
-        sh '''cd /var/www/html
-sudo rm -rf **.** *
-sudo cp -R /var/lib/jenkins/workspace/ez-books-front-end_master/dist/* .
-sudo chown -R apache:apache /var/www/html'''
+        sh 'docker run -p 8000:80 apache'
       }
     }
-
   }
 }
