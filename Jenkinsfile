@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'npm install'
-        sh 'npm run build'
+        sh 'yarn'
+        sh 'yarn build'
       }
     }
 
@@ -13,7 +13,7 @@ pipeline {
         sh '''cd /var/www/html
 sudo rm -rf **.** *
 sudo cp -R /var/lib/jenkins/workspace/ez-books-front-end_master/dist/* .
-sudo chown -R apache:apache'''
+sudo chown -R apache:apache /var/www/html'''
       }
     }
 
