@@ -12,7 +12,7 @@ pipeline {
     stage('deploy') {
       steps {
         sh 'docker rm -f frontend || true'
-        sh 'docker run -d -p 80:80 -t frontend apache-front-end'
+        sh 'docker run -d -p 80:80 --name frontend apache-front-end'
       }
     }
 
