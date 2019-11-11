@@ -11,7 +11,8 @@ pipeline {
 
     stage('deploy') {
       steps {
-        sh 'docker run -d -p 80:80 apache-front-end'
+        sh 'docker rm -f frontend'
+        sh 'docker run -d -p 80:80 -t frontend apache-front-end'
       }
     }
 
