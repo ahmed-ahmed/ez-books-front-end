@@ -62,7 +62,8 @@
                 if (this.form.username != "" && this.form.password != "") {
                     this.login({
                         username: this.form.username,
-                        password: this.form.password
+                        password: this.form.password,
+                        rememberMe: false
                     });
                     this.form.password = "";
                     this.loading = false;

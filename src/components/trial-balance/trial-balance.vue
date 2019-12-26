@@ -14,7 +14,7 @@
                 </thead>
                 <tbody>
                 <template v-for="accountCategory in Object.keys(accounts)">
-                    <tr>
+                    <tr :key="accountCategory">
                         <td colspan="4"><b>{{accountCategory}}</b></td>
                     </tr>
                     <tr v-for="a in accounts[accountCategory]" :key="'a' + a.id">
@@ -53,7 +53,7 @@
                 // expense: []
             }
         ),
-        mounted: async function() {
+        mounted: async function () {
             let res = await api.get(`reports/trialBalance`);
             this.accounts = this.groupBy(res.data, `accountType`)
             // api.get(`reports/accountBalances`).then(res => {

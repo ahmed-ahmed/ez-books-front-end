@@ -3,7 +3,6 @@ import TokenService from '../services/storage.service'
 import store from '../store/index'
 
 const ApiService = {
-
     // Stores the 401 interceptor position so that it can be later ejected when needed
     _401interceptor: null,
 

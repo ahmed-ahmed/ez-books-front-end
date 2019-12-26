@@ -10,7 +10,7 @@
                     <label class="form-label required">Account Type</label>
                     <select class="form-control account-type" v-model="account.parentId">
                         <template v-for="group in Object.keys(accounts)" :id="group">
-                            <optgroup :label="group">
+                            <optgroup :label="group" :key="group">
                                 <option v-for="a in accounts[group]" :value="a.id" :key="a.id">{{a.name}}</option>
                             </optgroup>
                         </template>
@@ -20,14 +20,15 @@
 
                 <div class="form-group">
                     <label class="form-label required">Account Name</label>
-                    <input v-model="account.name" type="text" class="form-control input-md account-name" @keyup.enter="save"
+                    <input v-model="account.name" type="text" class="form-control input-md account-name"
+                           @keyup.enter="save"
                            ref="accountName"/>
                     <span class="text-danger" v-if="$v.account.name.$error">Account name is required!</span>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Description</label>
-                    <textarea  v-model="account.description" type="text" class="form-control input-md description">
+                    <textarea v-model="account.description" type="text" class="form-control input-md description">
                     </textarea>
                 </div>
 

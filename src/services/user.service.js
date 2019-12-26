@@ -1,13 +1,12 @@
 import ApiService from './api.service'
 import TokenService from './storage.service'
 
-
 class AuthenticationError extends Error {
     constructor(errorCode, message) {
-        super(message)
-        this.name = this.constructor.name
-        this.message = message
-        this.errorCode = errorCode
+        super(message);
+        this.name = this.constructor.name;
+        this.message = message;
+        this.errorCode = errorCode;
     }
 }
 
@@ -18,32 +17,27 @@ const UserService = {
      * @returns access_token
      * @throws AuthenticationError
      **/
-    login: async function (username, password) {
-        var qs = require('qs');
+    login: async function (username, password, rememberMe) {
         const requestData = {
             method: 'post',
-            url: "/authenticate",
-            data: qs.stringify({
-                'grant_type': 'password',
+            url: "/api/authenticate",
+            data: {
                 'username': username,
-                'password': password
-            }),
-            auth: {
-                username: process.env.VUE_APP_CLIENT_ID,
-                password: process.env.VUE_APP_CLIENT_SECRET
+                'password': password,
+                "rememberMe": rememberMe
             },
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'accept': '*/*'
+                'Content-Type': 'application/json',
+                'accept': 'application/json'
             }
-        }
+        };
 
         try {
-            const response = await ApiService.customRequest(requestData)
+            const response = await ApiService.customRequest(requestData);
             //response.data.access_token = response.data.refresh_token = response.data.token //remove after testing
-            TokenService.saveToken(response.data.access_token)
+            TokenService.saveToken(response.data.id_token)
             //TokenService.saveRefreshToken(response.data.refresh_token)
-            ApiService.setHeader()
+            ApiService.setHeader();
 
             // NOTE: We haven't covered this yet in our ApiService
             //       but don't worry about this just yet - I'll come back to it later
@@ -55,39 +49,39 @@ const UserService = {
         }
     },
 
-    /**
-     * Refresh the access token.
-     **/
-    refreshToken: async function () {
-        const refreshToken = TokenService.getRefreshToken()
-
-        const requestData = {
-            method: 'post',
-            url: "/o/token/",
-            data: {
-                grant_type: 'refresh_token',
-                refresh_token: refreshToken
-            },
-            auth: {
-                username: process.env.VUE_APP_CLIENT_ID,
-                password: process.env.VUE_APP_CLIENT_SECRET
-            }
-        }
-
-        try {
-            const response = await ApiService.customRequest(requestData)
-
-            TokenService.saveToken(response.data.access_token)
-            TokenService.saveRefreshToken(response.data.refresh_token)
-            // Update the header in ApiService
-            ApiService.setHeader()
-
-            return response.data.access_token
-        } catch (error) {
-            throw new AuthenticationError(error.response.status, error.response.data.detail)
-        }
-
-    },
+    // /**
+    //  * Refresh the access token.
+    //  **/
+    // refreshToken: async function () {
+    //     const refreshToken = TokenService.getRefreshToken()
+    //
+    //     const requestData = {
+    //         method: 'post',
+    //         url: "/o/token/",
+    //         data: {
+    //             grant_type: 'refresh_token',
+    //             refresh_token: refreshToken
+    //         },
+    //         auth: {
+    //             username: process.env.VUE_APP_CLIENT_ID,
+    //             password: process.env.VUE_APP_CLIENT_SECRET
+    //         }
+    //     }
+    //
+    //     try {
+    //         const response = await ApiService.customRequest(requestData)
+    //
+    //         TokenService.saveToken(response.data.access_token)
+    //         TokenService.saveRefreshToken(response.data.refresh_token)
+    //         // Update the header in ApiService
+    //         ApiService.setHeader()
+    //
+    //         return response.data.access_token
+    //     } catch (error) {
+    //         throw new AuthenticationError(error.response.status, error.response.data.detail)
+    //     }
+    //
+    // },
 
     /**
      * Logout the current user by removing the token from storage.

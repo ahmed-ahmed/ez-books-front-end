@@ -5,14 +5,14 @@
         </div>
         <div class="body">
             <ul>
-                <li v-for="t in accountTypes" :id="t.id">
+                <li v-for="t in accountTypes" :id="t.id" :key="t.id">
                     {{t.name}}
 
                     <ul>
-                        <li v-for="c in t.accountCategorieses" :id="c.id">
+                        <li v-for="c in t.accountCategorieses" :id="c.id" :key="c.id">
                             {{c.name}}
                             <ul>
-                                <li v-for="a in c.accounts" :id="a.id">
+                                <li v-for="a in c.accounts" :id="a.id" :key="a.id">
                                     <div class="row">
                                         <div class="col-4">{{a.name}}</div>
                                         <div class="col-4 text-right">{{a.credit - a.debt}}</div>
