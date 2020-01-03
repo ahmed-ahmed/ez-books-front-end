@@ -47,7 +47,7 @@ const actions = {
     async login({commit}, {username, password}) {
         commit('loginRequest');
         try {
-            const token = await UserService.login(username, password);
+            const token = await UserService.login(username, password, true);
             commit('loginSuccess', token);
 
             // Redirect the user to the page he first tried to visit or to the home view

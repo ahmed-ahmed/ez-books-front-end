@@ -20,7 +20,7 @@ const UserService = {
     login: async function (username, password, rememberMe) {
         const requestData = {
             method: 'post',
-            url: "/api/authenticate",
+            url: "/authenticate",
             data: {
                 'username': username,
                 'password': password,
@@ -33,6 +33,7 @@ const UserService = {
         };
 
         try {
+            console.log(`${username}, ${password}, ${rememberMe}`);
             const response = await ApiService.customRequest(requestData);
             //response.data.access_token = response.data.refresh_token = response.data.token //remove after testing
             TokenService.saveToken(response.data.id_token)

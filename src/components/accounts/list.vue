@@ -23,7 +23,7 @@
                 >
                 </el-table-column>
                 <el-table-column
-                        prop="parentName"
+                        prop="accountSubType"
                         label="Type"
                         sortable
                 >

@@ -59,8 +59,7 @@
             }
         },
         mounted: async function () {
-            // http://192.168.1.8:8080/services/accounting/api/journals?page=1&size=100
-            let res = await api.get(`services/accounting/api/journals?page=0&size=100`);
+            let res = await api.get(`financial-acounts`);
             this.journals = res.data;
         },
         methods: {

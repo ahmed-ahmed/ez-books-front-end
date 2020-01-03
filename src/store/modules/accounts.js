@@ -15,12 +15,12 @@ export default {
     },
     actions: {
         async list(context) {
-            let response = await api.get(`accounts`);
+            let response = await api.get(`financial-acounts`);
             context.commit('setAccounts', response.data);
         },
         async add(context, account) {
             // await api.post(`accounts`, account);
-            let response = await api.post(`accounts`, account);
+            let response = await api.post(`financial-acounts`, account);
             context.commit('addAccount', response.data);
         }
     }

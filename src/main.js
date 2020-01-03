@@ -30,7 +30,7 @@ Vue.use(VueMeta, {
 
 
 // Set the base URL of the API
-ApiService.init(`http://192.168.1.8:8080`);
+ApiService.init(`http://10.244.16.40:9999/api/`);
 
 // If token exists set header
 if (TokenService.getToken()) {

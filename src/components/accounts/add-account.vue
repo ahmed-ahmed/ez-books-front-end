@@ -8,16 +8,15 @@
             <form class="form-horizontal">
                 <div class="form-group">
                     <label class="form-label required">Account Type</label>
-                    <select class="form-control account-type" v-model="account.parentId">
+                    <select class="form-control account-type" v-model="accountSubType"  @change="accountSubTypeSelected()">
                         <template v-for="group in Object.keys(accounts)" :id="group">
                             <optgroup :label="group" :key="group">
-                                <option v-for="a in accounts[group]" :value="a.id" :key="a.id">{{a.name}}</option>
+                                <option v-for="a in accounts[group]" :value="a" :key="a.id">{{a.name}}</option>
                             </optgroup>
                         </template>
                     </select>
-                    <span class="text-danger" v-if="$v.account.parentId.$error">Account type is required!</span>
+                    <span class="text-danger" v-if="$v.account.accountType.$error">Account type is required!</span>
                 </div>
-
                 <div class="form-group">
                     <label class="form-label required">Account Name</label>
                     <input v-model="account.name" type="text" class="form-control input-md account-name"
@@ -50,6 +49,7 @@
         name: "addAccount",
         data: function () {
             return {
+                accountSubType: {},
                 account: {},
                 parentId: null,
                 accounts: [],
@@ -58,17 +58,18 @@
         validations: {
             account: {
                 name: {required},
-                parentId: {required}
+                accountType: {required}
             }
         },
         mounted: async function () {
-            let res = await api.get(`accountTypes`);
+            let res = await api.get(`account-sub-types`);
             this.accounts = this.groupBy(res.data, 'accountType')
-            // this.accounts = res.data.map(a => {
-            //     return {id: a.id, text: a.name}
-            // });
         },
         methods: {
+            accountSubTypeSelected: function() {
+                this.account.accountSubType = this.accountSubType.name;
+                this.account.accountType = this.accountSubType.accountType;
+            },
             save: async function () {
                 this.$v.account.$touch();
                 if (this.$v.account.$error) return;
