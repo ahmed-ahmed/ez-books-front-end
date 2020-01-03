@@ -32,8 +32,8 @@
             </div>
             <div class="m-5"></div>
             <div class="row">
-                <div class="text-danger" v-if="$v.journal.journalDetails.$error">
-                    <div v-if="!$v.journal.journalDetails.minLength">You must have at least two line items</div>
+                <div class="text-danger" v-if="$v.journal.journalItems.$error">
+                    <div v-if="!$v.journal.journalItems.minLength">You must have at least two line items</div>
                 </div>
                 <div class="col-12">
                     <table class="table">
@@ -45,11 +45,11 @@
 <!--                                <i class="el-icon-plus" style="color: green; font-weight: bolder"></i>-->
                             </th>
                         </tr>
-                        <tr v-for="(d,i) in journal.journalDetails" :key="d.id">
+                        <tr v-for="(d,i) in journal.journalItems" :key="d.id">
                             <td colspan="2">
-                                <select2 :options="accounts" v-model="d.account.id">
+                                <select2 :options="accountsViewModel" v-model="d.financialAcount.id">
                                 </select2>
-                                <div class="text-danger" v-if="$v.journal.journalDetails.$each[i].account.id.$error">
+                                <div class="text-danger" v-if="$v.journal.journalItems.$each[i].financialAcount.id.$error">
                                     Please select account!
                                 </div>
                             </td>
@@ -66,7 +66,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <el-button round size="small" icon="el-icon-plus" @click="addLine()">Add Another Line</el-button>
+                                <el-button round size="small" icon="el-icon-plus" @click="addLine()">Add Another Line
+                                </el-button>
                             </td>
                             <td class="text-right">
                                 Sub Total
@@ -86,12 +87,12 @@
         </div>
 
         <div class="footer">
-            <el-button type="plain" @click="save()">
+            <el-button type="plain" @click="save(`DRAFT`)">
                 <i class="far fa-save"></i>
                 Save As Draft
             </el-button>
 
-            <el-button type="primary" @click="save()">
+            <el-button type="primary" @click="save(`PUBLISHED`)">
                 <i class="far fa-save"></i>
                 Save And Publish
             </el-button>
@@ -102,7 +103,7 @@
 <script>
     import api from '../../services/api.service';
     import select2 from "../select2";
-    import {required, minLength} from "vuelidate/lib/validators";
+    import {minLength, required} from "vuelidate/lib/validators";
     // import Vue from 'vue'
 
     export default {
@@ -112,21 +113,21 @@
         },
         data: function () {
             return {
-                accounts: [],
+                accountsViewModel: [],
                 errors: ``,
                 journal: {
-                    journalDetails: []
+                    journalItems: []
                 }
             }
         },
         validations: {
             journal: {
                 date: {required},
-                journalDetails: {
+                journalItems: {
                     required,
                     minLength: minLength(2),
                     $each: {
-                        account: {
+                        financialAcount: {
                             id: {required}
                         }
                     }
@@ -135,18 +136,18 @@
 
         },
         mounted: async function () {
-            let res = await api.get(`accounts`);
-            this.accounts = res.data.reduce((a, b) => {
-                const parentIndex = a.map(a => a.text).indexOf(b.parentName);
+            let res = await api.get(`financial-acounts`);
+            this.accountsViewModel = res.data.reduce((a, b) => {
+                const parentIndex = a.map(a => a.text).indexOf(b.accountSubType);
                 let parentObject = {};
                 if (parentIndex === -1) {
-                    parentObject = {text: b.parentName, children: []}
+                    parentObject = {text: b.accountSubType, children: []};
                     a.push(parentObject)
 
                 } else {
                     parentObject = a[parentIndex]
                 }
-                parentObject.children.push({id: b.id, text: b.name})
+                parentObject.children.push({id: b.id, text: b.name});
                 return a;
             }, []);
             this.addLine();
@@ -154,12 +155,12 @@
         },
         methods: {
             addLine: function () {
-                this.journal.journalDetails.push({debt: 0, credit: 0, account: {}});
+                this.journal.journalItems.push({debt: 0, credit: 0, financialAcount: {}});
             },
             deleteLine: function (index) {
-                this.journal.journalDetails.splice(index, 1);
+                this.journal.journalItems.splice(index, 1);
             },
-            save: async function () {
+            save: async function (status) {
                 this.$v.journal.$touch();
                 if (this.$v.journal.$error) return;
 
@@ -179,6 +180,8 @@
                     return;
                 }
 
+                this.journal.status = status;
+
                 await api.post(`journals`, this.journal);
                 this.$notify.success({
                     title: 'Info',
@@ -190,12 +193,12 @@
         },
         computed: {
             totalCredit: function () {
-                if (this.journal.journalDetails.length < 1) return 0;
-                return this.journal.journalDetails.map(a => parseFloat(a.credit)).reduce((a, b) => a + b, 0);
+                if (this.journal.journalItems.length < 1) return 0;
+                return this.journal.journalItems.map(a => parseFloat(a.credit)).reduce((a, b) => a + b, 0);
             },
             totalDebit: function () {
-                if (this.journal.journalDetails.length < 1) return 0;
-                return this.journal.journalDetails.map(a => parseFloat(a.debt)).reduce((a, b) => a + b, 0);
+                if (this.journal.journalItems.length < 1) return 0;
+                return this.journal.journalItems.map(a => parseFloat(a.debt)).reduce((a, b) => a + b, 0);
             }
         }
     }

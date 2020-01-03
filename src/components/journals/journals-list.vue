@@ -14,7 +14,6 @@
 
         </div>
         <div class="body">
-            <!--            :default-sort = "{prop: 'date', order: 'descending'}"-->
             <el-table :data="journals">
                 <el-table-column prop="date" label="Date" sortable width="180">
                     <template slot-scope="scope">
@@ -59,7 +58,7 @@
             }
         },
         mounted: async function () {
-            let res = await api.get(`financial-acounts`);
+            let res = await api.get(`journals?page=0&size=100`);
             this.journals = res.data;
         },
         methods: {
