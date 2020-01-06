@@ -47,7 +47,7 @@
                         </tr>
                         <tr v-for="(d,i) in journal.journalItems" :key="d.id">
                             <td colspan="2">
-                                <select2 :options="accountsViewModel" v-model="d.financialAcount.id">
+                                <select2 :options="accounts" v-model="d.financialAcount.id">
                                 </select2>
                                 <div class="text-danger" v-if="$v.journal.journalItems.$each[i].financialAcount.id.$error">
                                     Please select account!
@@ -74,7 +74,7 @@
                             </td>
                             <td class="text-right">{{totalDebit}}</td>
                             <td class="text-right">{{totalCredit}}</td>
-                            <td></td>
+                            <td/>
                         </tr>
                     </table>
                 </div>
@@ -88,12 +88,12 @@
 
         <div class="footer">
             <el-button type="plain" @click="save(`DRAFT`)">
-                <i class="far fa-save"></i>
+                <i class="far fa-save"/>
                 Save As Draft
             </el-button>
 
             <el-button type="primary" @click="save(`PUBLISHED`)">
-                <i class="far fa-save"></i>
+                <i class="far fa-save"/>
                 Save And Publish
             </el-button>
         </div>
@@ -113,7 +113,6 @@
         },
         data: function () {
             return {
-                accountsViewModel: [],
                 errors: ``,
                 journal: {
                     journalItems: []
@@ -136,20 +135,6 @@
 
         },
         mounted: async function () {
-            let res = await api.get(`financial-acounts`);
-            this.accountsViewModel = res.data.reduce((a, b) => {
-                const parentIndex = a.map(a => a.text).indexOf(b.accountSubType);
-                let parentObject = {};
-                if (parentIndex === -1) {
-                    parentObject = {text: b.accountSubType, children: []};
-                    a.push(parentObject)
-
-                } else {
-                    parentObject = a[parentIndex]
-                }
-                parentObject.children.push({id: b.id, text: b.name});
-                return a;
-            }, []);
             this.addLine();
             this.addLine();
         },
@@ -199,6 +184,9 @@
             totalDebit: function () {
                 if (this.journal.journalItems.length < 1) return 0;
                 return this.journal.journalItems.map(a => parseFloat(a.debt)).reduce((a, b) => a + b, 0);
+            },
+            accounts: function () {
+                return this.$store.getters[`accounts/groupBySubType`];
             }
         }
     }
